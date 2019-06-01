@@ -1,0 +1,83 @@
+body {
+  background-color: #2b447b;
+}
+#root {
+  height: auto;
+}
+
+#main-outer-div {
+  position: relative;
+  background-color: #fff;
+  width: 80%;
+  max-width: 400px;
+  margin: auto;
+  margin-top: 7%;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.container {
+}
+
+#logo-img {
+  width: 100%;
+  margin: 5% auto 5%;
+}
+
+#logo-div {
+  width: 70%;
+  margin: 0 auto;
+}
+
+#title-div {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form-group input {
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 10px;
+  height: 40px;
+  margin: 10px 0 10px;
+  padding: 15px;
+  border: 1px;
+  background-color: #eef3ff;
+}
+
+.form-group input:focus {
+  outline: 0;
+}
+
+#outer-form-div {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.form-group input[type="submit"] {
+  background-color: #395faf;
+  border-width: 0px;
+  margin-top: 15px;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.alert {
+  font-size: 14px;
+  text-align: center;
+  color: red;
+}
+
+@media (max-width: 300px) {
+  #main-outer-div {
+    width: 50%;
+    min-width: 0px;
+  }
+}
