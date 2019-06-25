@@ -1,0 +1,123 @@
+#add-button {
+  float: right;
+  background-color: #0069d9;
+  border: 0;
+  margin: 10px;
+  /* padding: 5px; */
+  /* border-radius: 5px; */
+  /* padding: 10px; */
+  color: white;
+  -webkit-box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.75);
+}
+#add-button:hover {
+  -webkit-box-shadow: 0px 0px 9px -1px rgba(0, 0, 1);
+  -moz-box-shadow: 0px 0px 9px -1px rgba(0, 0, 1);
+  box-shadow: 0px 0px 9px -1px rgba(0, 0, 0, 1);
+}
+#plus-icon {
+  /* margin: 5px; */
+   margin-right: 10px; 
+  /* float: left; */
+  /* margin-right: 10px; */
+}
+#role-title {
+  /* float: left; */
+  display: inline-block;
+  margin: 10px;
+  font-size: 28px;
+  /* width: 100px; */
+  /* color: red; */
+}
+#role-table {
+  font-size: 15px;
+  width: 98%;
+  /* margin-left: 100px; */
+  /* border: 1px solid black; */
+  margin: 5px auto;
+  /* background-color: red; */
+  text-align: left;
+  border-collapse: collapse;
+  /* overflow: scroll; */
+}
+#table-div svg{
+  cursor: pointer;
+}
+#role-table tr {
+  border-bottom: 1px solid rgb(187, 187, 187);
+  height: 40px;
+  /* background-color: blue; */
+}
+#role-table thead {
+  border-bottom: 1px solid rgb(187, 187, 187);
+  background-color:rgb(238, 238, 240);
+  /* height: 40px; */
+  /* padding: 100px; */
+  /* padding-bottom: 50px; */
+  /* height:0px; */
+  /* padding-top: 100px; */
+  /* background-color: blue; */
+}
+#role-table th {
+  /* border: 1px solid black; */
+  /* padding-bottom: 50px; */
+  /* height:0px; */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* padding-top: 100px; */
+  /* background-color: blue; */
+}
+#loading-bar {
+  /* margin-top: 100px; */
+  width: 100%;
+}
+#table-outer-div-scroll{
+  /* overflow: auto; */
+  /* height: 100%; */
+  /* width: 100%; */
+  /* box-sizing: content-box;  */
+  /* padding-right: 17px;  */
+  /* background-color: red; */
+}
+#table-outer-div-scroll::-webkit-scrollbar{
+  /* width: 0; */
+}
+#inner-table-div{
+  overflow-x: auto;
+}
+#table-div{
+  width: 98%;
+  height:550px;
+  margin: auto;
+  font-size: 14px !important;
+  /* line-height: 100px; */
+}
+.ag-header{
+  font-size: 14px !important;
+  height: 40px !important;
+}
+
+#clear-both{
+  clear: both;
+}
+
+@media (max-width: 1000px) {
+  #role-title {
+    font-size: 20px;
+    margin: 10px;
+    margin-top: 20px;
+  }
+  #inner-table-div{
+    overflow-x: auto;
+    width: 95%;
+    margin: auto;
+  }
+  #role-table th {
+    font-size: 15px;
+  }
+  #add-button{
+    margin: 10px;
+    margin-top: 20px;
+  }
+}

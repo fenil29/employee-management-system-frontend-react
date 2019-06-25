@@ -1,40 +1,43 @@
-import React, { Component } from "react";
-import { Navbar, Nav } from "react-bootstrap";
-import "./NavBar.css";
+import React, { Component } from 'react';
+import '../App.css';
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-export class Temp extends Component {
+class Temp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      columnDefs: [{
+        headerName: "Make", field: "make"
+      }, {
+        headerName: "Model", field: "model"
+      }, {
+        headerName: "Price", field: "price"
+      }],
+      rowData: [{
+        make: "Toyota", model: "Celica", price: 35000
+      }, {
+        make: "Ford", model: "Mondeo", price: 32000
+      }, {
+        make: "Porsche", model: "Boxter", price: 72000
+      }]
+    }
+  }
+
   render() {
     return (
-      // <Navbar >
-      // <div className="container">
-      //   <Navbar.Brand href="#home">Attendance</Navbar.Brand>
-      //   <Navbar.Toggle />
-        // <Navbar.Collapse className="justify-content-end">
-        //   <Navbar.Text>
-        //     <a href="#login">Mark Otto</a> <br/><br/><a href="#login">Logout</a>
-        //   </Navbar.Text>
-        // </Navbar.Collapse></div>
-      // </Navbar>
-      <Navbar bg="light" expand="lg" className="nav-bar" fixed="top" >
-        <div className="container">
-          <Navbar.Brand href="#home">Attendance</Navbar.Brand>
-         
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-         
-          <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-           
-            
-          </Navbar.Text>
-        </Navbar.Collapse>
-        
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ml-auto">             
-              <a href="">Log Out</a>
-            </Nav>
-          </Navbar.Collapse>
-        </div>
-      </Navbar>
+      <div 
+        className="ag-theme-balham"
+        style={{ 
+        height: '500px', 
+        width: '600px' }} 
+      >
+        <AgGridReact
+          columnDefs={this.state.columnDefs}
+          rowData={this.state.rowData}>
+        </AgGridReact>
+      </div>
     );
   }
 }

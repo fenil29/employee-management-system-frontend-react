@@ -1,0 +1,15 @@
+#search-bar{
+    /* margin-left: 15px; */
+    width: 98%;
+    margin:auto;
+    margin-bottom: 5px;
+}
+#search-bar div{
+    /* margin-left: 15px; */
+    width: 100%;
+}
+@media (max-width: 1000px) {
+    #search-bar{
+        width: 95%;
+    }
+  }

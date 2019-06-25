@@ -34,7 +34,7 @@ body {
   text-align: center;
 }
 
-.form-group input {
+ .login-form-input {
   box-sizing: border-box;
   width: 100%;
   border-radius: 10px;
@@ -45,20 +45,20 @@ body {
   background-color: #eef3ff;
 }
 
-.form-group input:focus {
+.login-form-input:focus {
   outline: 0;
 }
 
-#outer-form-div {
+#outer-login-form-div {
   width: 90%;
   margin: 0 auto;
 }
-
-.form-group input[type="submit"] {
+.login-form-input[type="submit"] {
   background-color: #395faf;
   border-width: 0px;
   margin-top: 15px;
-}
+  padding: 0px;
+} 
 
 .loading {
   text-align: center;

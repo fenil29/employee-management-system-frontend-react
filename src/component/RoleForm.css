@@ -1,0 +1,65 @@
+#form-submit-button button{
+    background-color: #0069d9;
+    border-color: #0069d9;
+    /* float: left; */
+    
+}
+#form-cancel-button{
+    /* float: left; */
+    /* float:right; */
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0px;
+    /* background-color: red; */
+    
+}
+#form-cancel-button button{
+    /* float: left; */
+    /* float:right; */
+    background-color: rgb(233, 233, 233);
+    border-color:rgb(233, 233, 233);
+    color: black;
+}
+#form-cancel-button button:focus{
+    /* float: left; */
+    /* float:right; */
+outline: 0;
+box-shadow: 0;
+}
+#form-cancel-button-inner{
+    /* padding: 0px; */
+}
+#form{
+    /* background-color: blue; */
+    position: relative;
+    margin: 0;
+    font-size: 15px;
+}
+#role-form-outer-div{
+    width: 80%;
+    margin:30px auto;
+}
+.form-input{
+    /* margin-right: 0 ; */
+}
+
+
+
+#role-form-title {
+  margin: 20px;
+}
+
+@media (max-width: 576px) {
+    #form-cancel-button-inner{
+        padding: 0px;
+    }
+}
+
+@media (max-width: 1000px) {
+    #role-form-title{
+        /* color: red; */
+        font-size: 22px;
+    }
+
+}

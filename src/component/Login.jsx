@@ -18,41 +18,41 @@ class Login extends Component {
         <div className="container">
           <div id="main-outer-div">
             <div id="logo-div">
-              {" "}
+               
               <img id="logo-img" src={Logo} alt="" />
             </div>
             <div id="title-div">
-              {" "}
+               
               <h4 className="title">Sign in</h4>
             </div>
 
-            <div id="outer-form-div">
+            <div id="outer-login-form-div">
               <form action="" method="" onSubmit={this.props.onSubmit}>
-                <div className="form-group">
-                  <input
+                {/* <div className="form-group"> */}
+                  <input className="login-form-input"
                     type="text"
                     // className="form-control"
                     placeholder="Email"
                     required="required"
                     name="Username"
                   />
-                </div>
-                <div className="form-group">
-                  <input
+                {/* </div> */}
+                {/* <div className="form-group"> */}
+                  <input className="login-form-input"
                     type="password"
                     // className="form-control"
                     placeholder="Password"
                     required="required"
                   />
-                </div>
-                <div className="form-group">
-                  <input
+                {/* </div> */}
+                {/* <div className="form-group"> */}
+                  <input className="login-form-input"
                     type="submit"
                     // className="btn btn-primary btn-block btn-lg btn-mystyle"
                     value="Sign in"
                     id="submitBtn"
                   />
-                </div>
+                {/* </div> */}
                 {!this.props.pass ? (
                   <p className="alert">Invalid UserName or Password</p>
                 ) : (

@@ -1,0 +1,32 @@
+#outer-empingo-div{
+    /* background: #000; */
+    width: 80%;
+    margin: auto;
+    margin-top: 60px;
+}
+#outer-empingo-div a:hover{
+    text-decoration:none;
+}
+.empinfo-button{
+    /* background-color:#404e67; */
+    border-color:#404e67;
+    color:#404e67;
+    margin: 10px;
+
+}
+.empinfo-button:hover{
+    background-color:#404e67;
+    /* border-color:#404e67; */
+    color:#fff;
+    border-color:#404e67;
+
+
+}
+.empinfo-button:active{
+    background-color:#404e67 !important;
+    /* border-color:#404e67; */
+    color:#fff !important;
+    border-color:#404e67 !important;
+
+
+}
