@@ -25,7 +25,8 @@ class App extends Component {
     data: {},
     loading: false,
     pass: true,
-    isLogin: false
+    isLogin: false,
+    firstTimeAlert: true,
   };
   componentDidMount() {
     this.setState({
@@ -33,8 +34,34 @@ class App extends Component {
         _id: localStorage.getItem("_id") || "",
         Account: localStorage.getItem("Account") || "",
         Name: localStorage.getItem("Name") || ""
-      }
+      },
+      isLogin: localStorage.getItem("isLogin") == "true"
+
+    }, () => {
+      // temporary : for user to see user id and pass of all accounts to explore all features of app
+      this.alertFirstTime()
     });
+
+  }
+  alertFirstTime() {
+    if (this.state.firstTimeAlert && !this.state.isLogin) {
+      setTimeout(function () {
+        window.alert(
+          `To explore the feature of this application here is the temporary id and pass for all account
+      Admin:
+          id:admin@gmail.com
+          pass:admin
+      Hr:
+          id:hr@gmail.com
+          pass:hr
+      Employee:
+          id:emp@gmail.com
+          pass:emp
+      `)
+      }, 500);
+
+      this.setState({ firstTimeAlert: false });
+    }
   }
   render() {
     return (
@@ -55,7 +82,8 @@ class App extends Component {
       //  <DashboardEmployee   data={this.state.data}/>
       //  <Temp />
       // <NotFound404/>
-      <Router>
+      < Router >
+
         <Switch>
           <Route
             exact
@@ -66,20 +94,20 @@ class App extends Component {
                 <Redirect to="/admin" />
               ) : // <Login OnLogin={this.handleLogin}/>
 
-              this.state.data["Account"] == 2 ? (
-                // <Dashboard />
-                <Redirect to="/hr" />
-              ) : //
-              this.state.data["Account"] == 3 ? (
-                // <Dashboard />
-                <Redirect to="/employee" />
-              ) : (
-                <Login
-                  onSubmit={this.handleSubmit}
-                  loading={this.state.loading}
-                  pass={this.state.pass}
-                />
-              )
+                this.state.data["Account"] == 2 ? (
+                  // <Dashboard />
+                  <Redirect to="/hr" />
+                ) : //
+                  this.state.data["Account"] == 3 ? (
+                    // <Dashboard />
+                    <Redirect to="/employee" />
+                  ) : (
+                      <Login
+                        onSubmit={this.handleSubmit}
+                        loading={this.state.loading}
+                        pass={this.state.pass}
+                      />
+                    )
             }
           />
           <Route
@@ -92,8 +120,8 @@ class App extends Component {
                   onLogout={this.handleLogout}
                 />
               ) : (
-                <Redirect to="/login" />
-              )
+                  <Redirect to="/login" />
+                )
             }
           />
           <Route
@@ -106,8 +134,8 @@ class App extends Component {
                   onLogout={this.handleLogout}
                 />
               ) : (
-                <Redirect to="/login" />
-              )
+                  <Redirect to="/login" />
+                )
             }
           />
           <Route
@@ -120,8 +148,8 @@ class App extends Component {
                   onLogout={this.handleLogout}
                 />
               ) : (
-                <Redirect to="/login" />
-              )
+                  <Redirect to="/login" />
+                )
             }
           />
           {/* <Route path="/" render={() => <Redirect to="/login" />} />
@@ -133,7 +161,7 @@ class App extends Component {
           /> */}
           <Redirect to="/login" />
         </Switch>
-      </Router>
+      </Router >
     );
   }
   handleSubmit = event => {
@@ -172,7 +200,7 @@ class App extends Component {
         console.log(jwt.decode(res.data));
         var decodedData = jwt.decode(res.data);
         localStorage.setItem("token", res.data);
-        
+
         if (
           (res == undefined ||
             res == null ||
@@ -198,6 +226,8 @@ class App extends Component {
             // localStorage.setItem('loading', 'false');
 
             this.setState({ isLogin: true });
+            localStorage.setItem("isLogin", true);
+
             // localStorage.setItem('isLogin', 'true');
             localStorage.setItem("Account", 1);
             localStorage.setItem("_id", decodedData["_id"]);
@@ -214,6 +244,8 @@ class App extends Component {
             this.setState({ pass: true });
             this.setState({ loading: false });
             this.setState({ isLogin: true });
+            localStorage.setItem("isLogin", true);
+
             localStorage.setItem("Account", 2);
             localStorage.setItem("_id", decodedData["_id"]);
             localStorage.setItem(
@@ -230,6 +262,8 @@ class App extends Component {
             this.setState({ pass: true });
             this.setState({ loading: false });
             this.setState({ isLogin: true });
+            localStorage.setItem("isLogin", true);
+
             localStorage.setItem("Account", 3);
             localStorage.setItem("_id", decodedData["_id"]);
             localStorage.setItem(
@@ -238,7 +272,7 @@ class App extends Component {
             );
             this.componentDidMount();
 
-            history.push("#/employee/" + decodedData._id+"/personal-info");
+            history.push("#/employee/" + decodedData._id + "/personal-info");
           }
         }
 
