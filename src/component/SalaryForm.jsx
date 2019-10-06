@@ -12,7 +12,7 @@ class SalaryForm extends Component {
  
   loadEmployeeInfo = () => {
     axios
-      .get("http://localhost:4000/api/employee", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/employee", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

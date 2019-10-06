@@ -6,17 +6,17 @@ import { Form, Button, Col, Row } from "react-bootstrap";
 
 class CompanyForm extends Component {
   state = {
-    countryData : [],
-    stateData : [],
-    cityData : [],
-    filteredCountryData : [],
-    filteredStateData : [],
-    filteredCityData : [],
+    countryData: [],
+    stateData: [],
+    cityData: [],
+    filteredCountryData: [],
+    filteredStateData: [],
+    filteredCityData: [],
   }
- 
+
   loadCountryInfo = () => {
     axios
-      .get("http://localhost:4000/api/country", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/country", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -30,13 +30,13 @@ class CompanyForm extends Component {
   };
   loadStateInfo = () => {
     axios
-      .get("http://localhost:4000/api/state", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/state", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
       })
       .then(response => {
-          this.setState({ stateData: response.data });
+        this.setState({ stateData: response.data });
       })
       .catch(error => {
         console.log(error);
@@ -44,13 +44,13 @@ class CompanyForm extends Component {
   };
   loadCityInfo = () => {
     axios
-      .get("http://localhost:4000/api/city", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/city", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
       })
       .then(response => {
-          this.setState({ cityData: response.data });
+        this.setState({ cityData: response.data });
       })
       .catch(error => {
         console.log(error);
@@ -64,21 +64,21 @@ class CompanyForm extends Component {
   onCountryChange(e) {
     console.log(e.target.value);
     let currentCountry = e.target.value;
- 
-        let filteredState = this.state.stateData.filter(
-          data => data["country"][0]["_id"] == currentCountry
-        );
-        this.setState({ filteredStateData: filteredState });
+
+    let filteredState = this.state.stateData.filter(
+      data => data["country"][0]["_id"] == currentCountry
+    );
+    this.setState({ filteredStateData: filteredState });
 
   }
   onStateChange(e) {
     console.log(e.target.value);
-  let currentState=e.target.value;
-   
-         let filteredCity = this.state.cityData.filter(
-          data => data["state"][0]["_id"] == currentState
-        );
-        this.setState({ filteredCityData: filteredCity });
+    let currentState = e.target.value;
+
+    let filteredCity = this.state.cityData.filter(
+      data => data["state"][0]["_id"] == currentState
+    );
+    this.setState({ filteredCityData: filteredCity });
 
   }
   render() {

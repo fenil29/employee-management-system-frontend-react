@@ -26,7 +26,7 @@ class DepartmentTable extends Component {
     loading: true,
 
     columnDefs: [
-   
+
       {
         headerName: "Company",
         field: "CompanyName",
@@ -34,7 +34,7 @@ class DepartmentTable extends Component {
         // width: 150,
         // filter: true ,
       },
-   
+
       {
         headerName: "Department",
         field: "DepartmentName",
@@ -42,8 +42,8 @@ class DepartmentTable extends Component {
         // width: 150,
         // filter: true ,
       },
-      
-      
+
+
 
       {
         headerName: "",
@@ -67,7 +67,7 @@ class DepartmentTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
 
@@ -77,7 +77,7 @@ class DepartmentTable extends Component {
 
   loadDepartmentData = () => {
     axios
-      .get("http://localhost:4000/api/department", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/department", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -93,8 +93,8 @@ class DepartmentTable extends Component {
           let temp = {
             data,
             CompanyName: data["company"][0]["CompanyName"],
-            DepartmentName:data["DepartmentName"],
-            
+            DepartmentName: data["DepartmentName"],
+
           };
 
           this.rowDataT.push(temp);
@@ -111,7 +111,7 @@ class DepartmentTable extends Component {
     console.log(e);
     if (window.confirm("Are you sure to delete this record ? ") == true) {
       axios
-        .delete("http://localhost:4000/api/department/" + e, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/department/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -119,11 +119,13 @@ class DepartmentTable extends Component {
         .then(res => {
           this.componentDidMount();
         })
-        .catch(err => {console.log(err);
+        .catch(err => {
+          console.log(err);
           console.log(err.response);
-          if(err.response.status==403){
-            window.alert(err.response.data) ;}
-        
+          if (err.response.status == 403) {
+            window.alert(err.response.data);
+          }
+
         });
     }
   };
@@ -170,12 +172,12 @@ class DepartmentTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -190,16 +192,16 @@ class DepartmentTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
 
         {/* <div id="inner-table-div">
           <table id="role-table">

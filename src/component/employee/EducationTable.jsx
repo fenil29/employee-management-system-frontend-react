@@ -27,7 +27,7 @@ class EducationTable extends Component {
     loading: true,
 
     columnDefs: [
-   
+
       {
         headerName: "School/University",
         field: "SchoolUniversity",
@@ -58,7 +58,7 @@ class EducationTable extends Component {
         // width: 150,
         // filter: true ,
       },
-      
+
 
       {
         headerName: "",
@@ -82,7 +82,7 @@ class EducationTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
 
@@ -94,7 +94,7 @@ class EducationTable extends Component {
 
   loadEducationData = () => {
     axios
-      .get("http://localhost:4000/api/education/" + this.props.data["_id"], {
+      .get("https://employee-management-fk-api.herokuapp.com/api/education/" + this.props.data["_id"], {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -109,11 +109,11 @@ class EducationTable extends Component {
         this.educationObj.education.map(data => {
           let temp = {
             data,
-            SchoolUniversity:data["SchoolUniversity"],
-            Degree:data["Degree"],
-            Grade:data["Grade"],
-            PassingOfYear:data["PassingOfYear"],
-            
+            SchoolUniversity: data["SchoolUniversity"],
+            Degree: data["Degree"],
+            Grade: data["Grade"],
+            PassingOfYear: data["PassingOfYear"],
+
           };
 
           this.rowDataT.push(temp);
@@ -129,7 +129,7 @@ class EducationTable extends Component {
     console.log(e1, e2);
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
-        .delete("http://localhost:4000/api/education/" + e1 + "/" + e2, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/education/" + e1 + "/" + e2, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -147,19 +147,19 @@ class EducationTable extends Component {
   }
   renderButton(params) {
     console.log(params);
-    if(this.props.back){return <React.Fragment/>}
+    if (this.props.back) { return <React.Fragment /> }
     return (
       <FontAwesomeIcon
         icon={faTrash}
         onClick={() =>
-          this.onEducationDelete(this.props.data["_id"],params.data.data["_id"])
+          this.onEducationDelete(this.props.data["_id"], params.data.data["_id"])
         }
       />
     );
   }
   renderEditButton(params) {
     console.log(params);
-    if(this.props.back){return <React.Fragment/>}
+    if (this.props.back) { return <React.Fragment /> }
     return (
       <FontAwesomeIcon
         icon={faEdit}
@@ -171,25 +171,25 @@ class EducationTable extends Component {
   render() {
     return (
       <div id="table-outer-div-scroll">
-        <h2 id="role-title">Employee Education Details {this.props.back?"of " +this.props.data["FirstName"]+" "+this.props.data["LastName"]:""}</h2>
+        <h2 id="role-title">Employee Education Details {this.props.back ? "of " + this.props.data["FirstName"] + " " + this.props.data["LastName"] : ""}</h2>
 
-        {this.props.back?(<Link to="/hr/employee">
-         <Button
-          variant="primary"
-          id="add-button"
-                 >
-          Back
+        {this.props.back ? (<Link to="/hr/employee">
+          <Button
+            variant="primary"
+            id="add-button"
+          >
+            Back
         </Button>
-        </Link>):<Button
+        </Link>) : <Button
           variant="primary"
           id="add-button"
           onClick={this.props.onAddEducation}
         >
-          <FontAwesomeIcon icon={faPlus} id="plus-icon" />
-          Add
+            <FontAwesomeIcon icon={faPlus} id="plus-icon" />
+            Add
         </Button>}
 
-        
+
 
         <div id="clear-both" />
 
@@ -197,12 +197,12 @@ class EducationTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -217,19 +217,19 @@ class EducationTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
 
 
-       </div>
+      </div>
     );
   }
 }

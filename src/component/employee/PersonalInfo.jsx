@@ -25,16 +25,16 @@ class PersonalInfo extends Component {
               onGenderChange={this.handleEditFormGenderChange}
             />
           ) : (
-            <PersonalInfoTable
-              onAddPersonalInfo={this.handleAddPersonalInfo}
-              onEditPersonalInfo={this.handleEditPersonalInfo}
-              data={this.props.data}
-              back={this.props.back}
-            />
-          )
+              <PersonalInfoTable
+                onAddPersonalInfo={this.handleAddPersonalInfo}
+                onEditPersonalInfo={this.handleEditPersonalInfo}
+                data={this.props.data}
+                back={this.props.back}
+              />
+            )
         ) : (
-          <div />
-        )}
+            <div />
+          )}
       </React.Fragment>
     );
   }
@@ -66,7 +66,7 @@ class PersonalInfo extends Component {
     };
     console.log("update", body);
     axios
-      .put("http://localhost:4000/api/personal-info/" + info["_id"], body, {
+      .put("https://employee-management-fk-api.herokuapp.com/api/personal-info/" + info["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

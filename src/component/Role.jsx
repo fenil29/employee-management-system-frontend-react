@@ -39,24 +39,24 @@ class Role extends Component {
               editData={this.state.editData}
             />
           ) : (
-            <RoleTable
-              onAddRole={this.handleAddRole}
-              onEditRole={this.handleEditRole}
-            />
-          )
+              <RoleTable
+                onAddRole={this.handleAddRole}
+                onEditRole={this.handleEditRole}
+              />
+            )
         ) : (
-          <RoleForm
-            onRoleSubmit={this.handleRoleSubmit}
-            onFormClose={this.handleFormClose}
-          />
-        )}
+            <RoleForm
+              onRoleSubmit={this.handleRoleSubmit}
+              onFormClose={this.handleFormClose}
+            />
+          )}
 
         {/* <div>fenil</div> */}
         {/* <Route path="/admin/role/table" exact component={RoleTable} /> */}
         {/* <Route path="/admin/role/form" exact component={() => <RoleForm onRoleSubmit={this.handleRoleSubmit} />} /> */}
 
         {/* <RoleTable/> */}
-        </React.Fragment>
+      </React.Fragment>
 
       //  </Router>
     );
@@ -73,7 +73,7 @@ class Role extends Component {
     //  let body= "CompanyID=" + event.target[0].value + "&Role=" + event.target[1].value;
     //  let body= "FenilKaneria";
     axios
-      .post("http://localhost:4000/api/role", body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/role", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -122,7 +122,7 @@ class Role extends Component {
     };
     console.log("update", body);
     axios
-      .put("http://localhost:4000/api/role/" + info["_id"], body, {
+      .put("https://employee-management-fk-api.herokuapp.com/api/role/" + info["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

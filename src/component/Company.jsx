@@ -22,18 +22,18 @@ class Company extends Component {
               editData={this.state.editData}
             />
           ) : (
-            <CompanyTable
-              onAddCompany={this.handleAddCompany}
-              onEditCompany={this.handleEditCompany}
-            />
-          )
+              <CompanyTable
+                onAddCompany={this.handleAddCompany}
+                onEditCompany={this.handleEditCompany}
+              />
+            )
         ) : (
-          <CompanyForm
-            onCompanySubmit={this.handleCompanySubmit}
-            onFormClose={this.handleFormClose}
-          />
-        )}    
-        </React.Fragment>
+            <CompanyForm
+              onCompanySubmit={this.handleCompanySubmit}
+              onFormClose={this.handleFormClose}
+            />
+          )}
+      </React.Fragment>
     );
   }
   handleCompanySubmit = event => {
@@ -41,10 +41,10 @@ class Company extends Component {
     console.log("id", event.target[0].value, event.target[1].value);
     this.setState({ table: true });
 
-    let body = {     
+    let body = {
       CompanyName: event.target[0].value,
       Address: event.target[1].value,
-      CityID:event.target[4].value,
+      CityID: event.target[4].value,
       PostalCode: event.target[5].value,
       Website: event.target[6].value,
       Email: event.target[7].value,
@@ -53,10 +53,10 @@ class Company extends Component {
       FaxNo: event.target[10].value,
       PanNo: event.target[11].value,
       GSTNo: event.target[12].value,
-      CINNo: event.target[13].value,    
+      CINNo: event.target[13].value,
     };
     axios
-      .post("http://localhost:4000/api/company", body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/company", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -96,7 +96,7 @@ class Company extends Component {
     let body = {
       CompanyName: newInfo.target[0].value,
       Address: newInfo.target[1].value,
-      CityID:newInfo.target[4].value,
+      CityID: newInfo.target[4].value,
       PostalCode: newInfo.target[5].value,
       Website: newInfo.target[6].value,
       Email: newInfo.target[7].value,
@@ -110,12 +110,12 @@ class Company extends Component {
     console.log("update", body);
     axios
       .put(
-        "http://localhost:4000/api/company/" + info["_id"],
+        "https://employee-management-fk-api.herokuapp.com/api/company/" + info["_id"],
         body, {
-          headers: {
-            authorization: localStorage.getItem("token") || ""
-          }
+        headers: {
+          authorization: localStorage.getItem("token") || ""
         }
+      }
       )
       .then(res => {
         // this.componentDidMount();

@@ -24,7 +24,7 @@ class AdminCompanyTable extends Component {
     loading: true,
 
     columnDefs: [
-   
+
       {
         headerName: "Company Name",
         field: "CompanyName",
@@ -60,8 +60,8 @@ class AdminCompanyTable extends Component {
         headerName: "Postal Code",
         field: "PostalCode",
         sortable: true,
-        
-        
+
+
         width: 120,
         // filter: true ,
       },
@@ -74,7 +74,7 @@ class AdminCompanyTable extends Component {
       {
         headerName: "Email",
         field: "Email",
-        sortable: true,        
+        sortable: true,
         width: 150,
         // filter: true ,
       },
@@ -82,7 +82,7 @@ class AdminCompanyTable extends Component {
         headerName: "Contact Person",
         field: "ContactPerson",
         sortable: true,
-        
+
         width: 140,
         // filter: true ,
       },
@@ -90,7 +90,7 @@ class AdminCompanyTable extends Component {
         headerName: "Contact No",
         field: "ContactNo",
         sortable: true,
-        
+
         width: 120,
         // filter: true ,
       },
@@ -118,7 +118,7 @@ class AdminCompanyTable extends Component {
         sortable: true
         // filter: true ,
       },
-      
+
 
       {
         headerName: "",
@@ -142,7 +142,7 @@ class AdminCompanyTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
 
@@ -153,7 +153,7 @@ class AdminCompanyTable extends Component {
 
   loadCompanyData = () => {
     axios
-      .get("http://localhost:4000/api/company", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/company", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -168,7 +168,7 @@ class AdminCompanyTable extends Component {
 
         this.companyObj.map(data => {
           let temp = {
-            data,      
+            data,
             CompanyName: data["CompanyName"],
             Address: data["Address"],
             CountryName: data["city"][0]["state"][0]["country"][0][
@@ -185,7 +185,7 @@ class AdminCompanyTable extends Component {
             PanNo: data["PanNo"],
             GSTNo: data["GSTNo"],
             CINNo: data["CINNo"],
-            
+
           };
 
           this.rowDataT.push(temp);
@@ -201,7 +201,7 @@ class AdminCompanyTable extends Component {
     console.log(e);
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
-        .delete("http://localhost:4000/api/company/" + e, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/company/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -259,12 +259,12 @@ class AdminCompanyTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -279,17 +279,17 @@ class AdminCompanyTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
-{/*         
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
+        {/*         
         <div id="inner-table-div">
           <table id="role-table">
             <thead>

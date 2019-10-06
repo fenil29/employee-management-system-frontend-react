@@ -39,24 +39,24 @@ class Country extends Component {
               editData={this.state.editData}
             />
           ) : (
-            <CountryTable
-              onAddCountry={this.handleAddCountry}
-              onEditCountry={this.handleEditCountry}
-            />
-          )
+              <CountryTable
+                onAddCountry={this.handleAddCountry}
+                onEditCountry={this.handleEditCountry}
+              />
+            )
         ) : (
-          <CountryForm
-            onCountrySubmit={this.handleCountrySubmit}
-            onFormClose={this.handleFormClose}
-          />
-        )}
+            <CountryForm
+              onCountrySubmit={this.handleCountrySubmit}
+              onFormClose={this.handleFormClose}
+            />
+          )}
 
         {/* <div>fenil</div> */}
         {/* <Route path="/admin/country/table" exact component={CountryTable} /> */}
         {/* <Route path="/admin/country/form" exact component={() => <CountryForm onCountrySubmit={this.handleCountrySubmit} />} /> */}
 
         {/* <CountryTable/> */}
-        </React.Fragment>
+      </React.Fragment>
 
       //  </Router>
     );
@@ -72,7 +72,7 @@ class Country extends Component {
     //  let body= "CompanyID=" + event.target[0].value + "&Country=" + event.target[1].value;
     //  let body= "FenilKaneria";
     axios
-      .post("http://localhost:4000/api/country", body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/country", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -110,17 +110,17 @@ class Country extends Component {
     console.log("clicked1");
     this.setState({ table: true });
   };
-  handleCountryEditUpdate = (info,newInfo) => {
+  handleCountryEditUpdate = (info, newInfo) => {
     // this.setState({ table: true });
     let body = {
       // ...info,CompanyID:formData1,Country:formData2
-    //   CompanyID: formData1,
+      //   CompanyID: formData1,
       CountryName: newInfo.target[0].value,
-    //   CountryID: info["CountryID"]
+      //   CountryID: info["CountryID"]
     };
     console.log("update", body);
     axios
-      .put("http://localhost:4000/api/country/" + info["_id"], body, {
+      .put("https://employee-management-fk-api.herokuapp.com/api/country/" + info["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

@@ -24,8 +24,8 @@ class AdminPortal extends Component {
     table: true,
     editForm: false,
     editData: {},
-    addFormStatus:"",
-    editFormStatus:""
+    addFormStatus: "",
+    editFormStatus: ""
   };
 
   render() {
@@ -42,25 +42,25 @@ class AdminPortal extends Component {
               onStatusChange={this.handleEditFormStatusChange}
             />
           ) : (
-            <AdminPortalTable
-              onAddPortal={this.handleAddPortal}
-              onEditPortal={this.handleEditPortal}
-            />
-          )
+              <AdminPortalTable
+                onAddPortal={this.handleAddPortal}
+                onEditPortal={this.handleEditPortal}
+              />
+            )
         ) : (
-          <AdminPortalForm
-            onPortalSubmit={this.handlePortalSubmit}
-            onFormClose={this.handleFormClose}
-            onStatusChange={this.handleAddFormStatusChange}
-          />
-        )}
+            <AdminPortalForm
+              onPortalSubmit={this.handlePortalSubmit}
+              onFormClose={this.handleFormClose}
+              onStatusChange={this.handleAddFormStatusChange}
+            />
+          )}
 
         {/* <div>fenil</div> */}
         {/* <Route path="/admin/Portal/table" exact component={AdminPortalTable} /> */}
         {/* <Route path="/admin/Portal/form" exact component={() => <AdminPortalForm onPortalSubmit={this.handlePortalSubmit} />} /> */}
 
         {/* <AdminPortalTable/> */}
-        </React.Fragment>
+      </React.Fragment>
 
       //  </Router>
     );
@@ -73,12 +73,12 @@ class AdminPortal extends Component {
 
     let body = {
       PortalName: event.target[0].value,
-      Status:  this.state.addFormStatus
+      Status: this.state.addFormStatus
     };
     //  let body= "CompanyID=" + event.target[0].value + "&Portal=" + event.target[1].value;
     //  let body= "FenilKaneria";
     axios
-      .post("http://localhost:4000/api/admin/portal", body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/admin/portal", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -121,15 +121,15 @@ class AdminPortal extends Component {
     // console.log(e.currentTarget.value);
     this.setState({
       addFormStatus: e.currentTarget.value
-      });
- 
+    });
+
   };
   handleEditFormStatusChange = (e) => {
     // console.log(e.currentTarget.value);
     this.setState({
       editFormStatus: e.currentTarget.value
-      });
- 
+    });
+
   };
   handlePortalEditUpdate = (info, formData1) => {
     // this.setState({ table: true });
@@ -137,12 +137,12 @@ class AdminPortal extends Component {
       // ...info,CompanyID:formData1,Portal:formData2
       _id: info["_id"],
       PortalName: formData1,
-      Status:this.state.editFormStatus,
+      Status: this.state.editFormStatus,
       ID: info["ID"],
     };
     console.log("update", body);
     axios
-      .put("http://localhost:4000/api/admin/portal/" + info["ID"], body, {
+      .put("https://employee-management-fk-api.herokuapp.com/api/admin/portal/" + info["ID"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

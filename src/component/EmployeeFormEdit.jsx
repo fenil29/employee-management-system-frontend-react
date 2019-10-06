@@ -11,7 +11,7 @@ class EmployeeFormEdit extends Component {
     GenderData: this.props.editData["Gender"],
 
     EmailData: this.props.editData["Email"],
-    PasswordData:"",
+    PasswordData: "",
 
     FirstNameData: this.props.editData["FirstName"],
     MiddleNameData: this.props.editData["MiddleName"],
@@ -51,7 +51,7 @@ class EmployeeFormEdit extends Component {
 
   loadRoleInfo = () => {
     axios
-      .get("http://localhost:4000/api/role", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/role", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -65,7 +65,7 @@ class EmployeeFormEdit extends Component {
   };
   loadPositionInfo = () => {
     axios
-      .get("http://localhost:4000/api/position", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/position", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -79,7 +79,7 @@ class EmployeeFormEdit extends Component {
   };
   loadDepartmentInfo = () => {
     axios
-      .get("http://localhost:4000/api/department", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/department", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -138,7 +138,7 @@ class EmployeeFormEdit extends Component {
                   required
                   value={this.state.EmailData}
                   onChange={value => this.onEmailDataChange(value)}
-                  
+
                 />
               </Col>
             </Form.Group>

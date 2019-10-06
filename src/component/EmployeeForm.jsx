@@ -5,15 +5,15 @@ import { Form, Button, Col, Row } from "react-bootstrap";
 
 class EmployeeForm extends Component {
   state = {
-    roleData : [],
-    positionData : [],
-    departmentData : [],
-    
+    roleData: [],
+    positionData: [],
+    departmentData: [],
+
   }
- 
+
   loadRoleInfo = () => {
     axios
-      .get("http://localhost:4000/api/role", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/role", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -27,13 +27,13 @@ class EmployeeForm extends Component {
   };
   loadPositionInfo = () => {
     axios
-      .get("http://localhost:4000/api/position", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/position", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
       })
       .then(response => {
-          this.setState({ positionData: response.data });
+        this.setState({ positionData: response.data });
       })
       .catch(error => {
         console.log(error);
@@ -41,13 +41,13 @@ class EmployeeForm extends Component {
   };
   loadDepartmentInfo = () => {
     axios
-      .get("http://localhost:4000/api/department", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/department", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
       })
       .then(response => {
-          this.setState({ departmentData: response.data });
+        this.setState({ departmentData: response.data });
       })
       .catch(error => {
         console.log(error);
@@ -92,17 +92,17 @@ class EmployeeForm extends Component {
             </Form.Group>
 
             <Form.Group as={Row} >
-    <Form.Label column sm={2}>
-    Account access
+              <Form.Label column sm={2}>
+                Account access
     </Form.Label>
-    <Col sm={10} className="form-input">
-    <Form.Control as="select"  required>
-    <option value="1">Admin</option>
-    <option value="2">HR</option>
-    <option value="3">Employee</option>
-          </Form.Control>
-    </Col>
-    </Form.Group>
+              <Col sm={10} className="form-input">
+                <Form.Control as="select" required>
+                  <option value="1">Admin</option>
+                  <option value="2">HR</option>
+                  <option value="3">Employee</option>
+                </Form.Control>
+              </Col>
+            </Form.Group>
 
             <Form.Group as={Row}>
               <Form.Label column sm={2}>
@@ -123,30 +123,30 @@ class EmployeeForm extends Component {
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
-      <Form.Label as="legend" column sm={2}>
-      Gender
+              <Form.Label as="legend" column sm={2}>
+                Gender
       </Form.Label>
-      <Col sm={10}>
-        <Form.Check
-        inline
-          type="radio"
-          label="Male"
-          value="male"
-          name="gender"            
-        onChange={this.props.onGenderChange}   
-        required
-        />
-        <Form.Check
-        inline
-          type="radio"
-          label="Female"
-          value="female"
-          name="gender" 
-          onChange={this.props.onGenderChange}  
-          required      
-        />
-      </Col>
-    </Form.Group>
+              <Col sm={10}>
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Male"
+                  value="male"
+                  name="gender"
+                  onChange={this.props.onGenderChange}
+                  required
+                />
+                <Form.Check
+                  inline
+                  type="radio"
+                  label="Female"
+                  value="female"
+                  name="gender"
+                  onChange={this.props.onGenderChange}
+                  required
+                />
+              </Col>
+            </Form.Group>
             <Form.Group as={Row}>
               <Form.Label column sm={2}>
                 First Name
@@ -179,7 +179,7 @@ class EmployeeForm extends Component {
                 <Form.Control
                   type="text"
                   placeholder="Last Name"
-               
+
                   required
                 />
               </Col>
@@ -198,34 +198,34 @@ class EmployeeForm extends Component {
             </Form.Group>
             <Form.Group as={Row}>
               <Form.Label column sm={2}>
-              Contact No 
+                Contact No
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control
                   type="text"
                   placeholder="Contact No "
-               
+
                   required
                 />
               </Col>
-              </Form.Group>
-              <Form.Group as={Row}>
+            </Form.Group>
+            <Form.Group as={Row}>
               <Form.Label column sm={2}>
-              Employee Code
+                Employee Code
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control
                   type="text"
                   placeholder="Employee Code"
-               
+
                   required
                 />
               </Col>
-              </Form.Group>
+            </Form.Group>
 
             <Form.Group as={Row}>
               <Form.Label column sm={2}>
-              Department
+                Department
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control
@@ -245,7 +245,7 @@ class EmployeeForm extends Component {
 
             <Form.Group as={Row}>
               <Form.Label column sm={2}>
-              Position
+                Position
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control as="select" name="position" required>
@@ -260,7 +260,7 @@ class EmployeeForm extends Component {
             </Form.Group>
             <Form.Group as={Row}>
               <Form.Label column sm={2}>
-              Date Of Joining
+                Date Of Joining
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control
@@ -272,7 +272,7 @@ class EmployeeForm extends Component {
             </Form.Group>
             <Form.Group as={Row}>
               <Form.Label column sm={2}>
-              Terminate Date 
+                Terminate Date
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control
@@ -282,7 +282,7 @@ class EmployeeForm extends Component {
               </Col>
             </Form.Group>
 
-            
+
 
             <Form.Group as={Row} id="form-submit-button">
               <Col sm={{ span: 10, offset: 2 }}>

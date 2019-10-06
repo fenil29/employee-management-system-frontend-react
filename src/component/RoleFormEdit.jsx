@@ -14,7 +14,7 @@ class RoleForm extends Component {
   companyData = [];
   loadCompanyInfo = () => {
     axios
-      .get("http://localhost:4000/api/company", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/company", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

@@ -78,27 +78,27 @@ class AdminProjectBidTable extends Component {
         sortable: true
         // filter: true ,
       },
-     
+
 
       {
         headerName: "",
         field: "edit",
-        filter: false ,
+        filter: false,
         width: 30,
         cellRendererFramework: this.renderEditButton.bind(this),
-      
-    
+
+
       },
       {
         headerName: "",
         field: "delete",
-        filter: false ,
+        filter: false,
         width: 30,
         cellRendererFramework: this.renderButton.bind(this),
-      
-    
+
+
       },
-      
+
     ],
     rowData: [],
     defaultColDef: {
@@ -107,7 +107,7 @@ class AdminProjectBidTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
   };
@@ -116,7 +116,7 @@ class AdminProjectBidTable extends Component {
 
   loadProjectBidData = () => {
     axios
-      .get("http://localhost:4000/api/admin/project-bid", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/admin/project-bid", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -132,14 +132,14 @@ class AdminProjectBidTable extends Component {
           let temp = {
             data,
             ProjectTitle: data["ProjectTitle"],
-            PortalName:data["portals"][0]["PortalName"],
-            ProjectURL:data["ProjectURL"],
+            PortalName: data["portals"][0]["PortalName"],
+            ProjectURL: data["ProjectURL"],
             EstimatedTime: data["EstimatedTime"],
             EstimatedCost: data["EstimatedCost"],
-            Remark:data["Remark"],
-            
+            Remark: data["Remark"],
+
           };
-          
+
           this.rowDataT.push(temp);
         });
         this.setState({ rowData: this.rowDataT });
@@ -153,7 +153,7 @@ class AdminProjectBidTable extends Component {
     console.log(e);
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
-        .delete("http://localhost:4000/api/admin/project-bid/" + e, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/admin/project-bid/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -169,19 +169,19 @@ class AdminProjectBidTable extends Component {
   componentDidMount() {
     this.loadProjectBidData();
   }
-  renderButton(params){
+  renderButton(params) {
     console.log(params);
     return <FontAwesomeIcon
-    icon={faTrash}
-    onClick={() => this.onProjectBidDelete(params.data.data["_id"])}
-  />;
+      icon={faTrash}
+      onClick={() => this.onProjectBidDelete(params.data.data["_id"])}
+    />;
   }
-  renderEditButton(params){
+  renderEditButton(params) {
     console.log(params);
     return <FontAwesomeIcon
-    icon={faEdit}
-    onClick={() => this.props.onEditProjectBid(params.data.data)}
-  />;
+      icon={faEdit}
+      onClick={() => this.props.onEditProjectBid(params.data.data)}
+    />;
   }
 
   render() {
@@ -203,12 +203,12 @@ class AdminProjectBidTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -223,16 +223,16 @@ class AdminProjectBidTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
 
       </div>
     );

@@ -17,7 +17,7 @@ class FamilyInfo extends Component {
       <React.Fragment>
         {/* <h1>iiiiiiiiiinnnnnnnnnnnnnn{
           JSON.stringify(this.props.data)}</h1> */}
-        
+
         {this.state.table ? (
           this.state.editForm ? (
             <FamilyInfoFormEdit
@@ -26,21 +26,21 @@ class FamilyInfo extends Component {
               editData={this.state.editData}
             />
           ) : (
-            <FamilyInfoTable
-              onAddFamilyInfo={this.handleAddFamilyInfo}
-              onEditFamilyInfo={this.handleEditFamilyInfo} 
-              data={this.props.data}   
-              back={this.props.back}            
-            />
-          )
+              <FamilyInfoTable
+                onAddFamilyInfo={this.handleAddFamilyInfo}
+                onEditFamilyInfo={this.handleEditFamilyInfo}
+                data={this.props.data}
+                back={this.props.back}
+              />
+            )
         ) : (
-          <FamilyInfoForm
-            onFamilyInfoSubmit={this.handleFamilyInfoSubmit}
-            onFormClose={this.handleFormClose}
-            onGenderChange={this.handleAddFormGenderChange}
-          />
-        )}    
-        </React.Fragment>
+            <FamilyInfoForm
+              onFamilyInfoSubmit={this.handleFamilyInfoSubmit}
+              onFormClose={this.handleFormClose}
+              onGenderChange={this.handleAddFormGenderChange}
+            />
+          )}
+      </React.Fragment>
     );
   }
   handleFamilyInfoSubmit = event => {
@@ -49,13 +49,13 @@ class FamilyInfo extends Component {
     this.setState({ table: true });
 
     let body = {
-  Name: event.target[0].value,
-  Relationship:  event.target[1].value,
-  DOB:  event.target[2].value,
-  Occupation:  event.target[3].value,
+      Name: event.target[0].value,
+      Relationship: event.target[1].value,
+      DOB: event.target[2].value,
+      Occupation: event.target[3].value,
     };
     axios
-      .post("http://localhost:4000/api/family-info/"+this.props.data["_id"], body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/family-info/" + this.props.data["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -77,7 +77,7 @@ class FamilyInfo extends Component {
     console.log("clicked6");
     this.setState({ editForm: true });
     this.setState({ editData: e });
-    this.setState({editFormGender:e["Gender"]})
+    this.setState({ editFormGender: e["Gender"] })
   };
   handleFormClose = () => {
     console.log("clicked1");
@@ -92,23 +92,23 @@ class FamilyInfo extends Component {
   //   this.setState({ table: true });
   // };
   handleFamilyInfoEditUpdate = (info, newInfo) => {
-    newInfo.preventDefault( );
-    console.log("zero data",newInfo.target[0].value);
-    let body = { 
+    newInfo.preventDefault();
+    console.log("zero data", newInfo.target[0].value);
+    let body = {
       Name: newInfo.target[0].value,
-      Relationship:  newInfo.target[1].value,
-      DOB:  newInfo.target[2].value,
-      Occupation:  newInfo.target[3].value,
+      Relationship: newInfo.target[1].value,
+      DOB: newInfo.target[2].value,
+      Occupation: newInfo.target[3].value,
     };
     console.log("update", body);
     axios
       .put(
-        "http://localhost:4000/api/family-info/" + info["_id"],
+        "https://employee-management-fk-api.herokuapp.com/api/family-info/" + info["_id"],
         body, {
-          headers: {
-            authorization: localStorage.getItem("token") || ""
-          }
+        headers: {
+          authorization: localStorage.getItem("token") || ""
         }
+      }
       )
       .then(res => {
         this.setState({ table: false });

@@ -26,7 +26,7 @@ class AdminPortalTable extends Component {
     loading: true,
 
     columnDefs: [
-   
+
       {
         headerName: "Portal",
         field: "PortalName",
@@ -34,7 +34,7 @@ class AdminPortalTable extends Component {
         // width: 150,
         // filter: true ,
       },
-   
+
       {
         headerName: "Status",
         field: "Status",
@@ -42,8 +42,8 @@ class AdminPortalTable extends Component {
         // width: 150,
         // filter: true ,
       },
-      
-      
+
+
 
       {
         headerName: "",
@@ -67,7 +67,7 @@ class AdminPortalTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
   };
@@ -76,7 +76,7 @@ class AdminPortalTable extends Component {
 
   loadPortalData = () => {
     axios
-      .get("http://localhost:4000/api/admin/portal", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/admin/portal", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -93,8 +93,8 @@ class AdminPortalTable extends Component {
           let temp = {
             data,
             PortalName: data["PortalName"],
-            Status:data["Status"] == 1 ? "enable" : "disable",
-            
+            Status: data["Status"] == 1 ? "enable" : "disable",
+
           };
 
           this.rowDataT.push(temp);
@@ -114,7 +114,7 @@ class AdminPortalTable extends Component {
       ) == true
     ) {
       axios
-        .delete("http://localhost:4000/api/admin/portal/" + e, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/admin/portal/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -169,12 +169,12 @@ class AdminPortalTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -189,17 +189,17 @@ class AdminPortalTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
-      
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
+
       </div>
     );
   }

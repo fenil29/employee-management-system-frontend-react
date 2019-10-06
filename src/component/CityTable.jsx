@@ -64,7 +64,7 @@ class CityTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
   };
@@ -74,7 +74,7 @@ class CityTable extends Component {
   // stateDataArray;
   loadCityData = () => {
     axios
-      .get("http://localhost:4000/api/city", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/city", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -111,7 +111,7 @@ class CityTable extends Component {
     // let body= "ID=" + e;
     if (window.confirm("Are you sure to delete this record ? ") == true) {
       axios
-        .delete("http://localhost:4000/api/city/" + e, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/city/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -176,12 +176,12 @@ class CityTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -196,16 +196,16 @@ class CityTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
       </div>
     );
   }

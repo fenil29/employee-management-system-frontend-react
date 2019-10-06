@@ -17,7 +17,7 @@ class CityForm extends Component {
   }
   loadCountryInfo = () => {
     axios
-      .get("http://localhost:4000/api/country", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/country", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -31,7 +31,7 @@ class CityForm extends Component {
   };
   loadStateInfo = () => {
     axios
-      .get("http://localhost:4000/api/state", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/state", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

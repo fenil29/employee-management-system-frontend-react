@@ -17,7 +17,7 @@ class LeaveApplicationEmp extends Component {
       <React.Fragment>
         {/* <h1>iiiiiiiiiinnnnnnnnnnnnnn{
           JSON.stringify(this.props.data)}</h1> */}
-        
+
         {this.state.table ? (
           this.state.editForm ? (
             <LeaveApplicationEmpFormEdit
@@ -26,20 +26,20 @@ class LeaveApplicationEmp extends Component {
               editData={this.state.editData}
             />
           ) : (
-            <LeaveApplicationEmpTable
-              onAddLeaveApplicationEmp={this.handleAddLeaveApplicationEmp}
-              onEditLeaveApplicationEmp={this.handleEditLeaveApplicationEmp} 
-              data={this.props.data}             
-            />
-          )
+              <LeaveApplicationEmpTable
+                onAddLeaveApplicationEmp={this.handleAddLeaveApplicationEmp}
+                onEditLeaveApplicationEmp={this.handleEditLeaveApplicationEmp}
+                data={this.props.data}
+              />
+            )
         ) : (
-          <LeaveApplicationEmpForm
-            onLeaveApplicationEmpSubmit={this.handleLeaveApplicationEmpSubmit}
-            onFormClose={this.handleFormClose}
-            onGenderChange={this.handleAddFormGenderChange}
-          />
-        )}    
-        </React.Fragment>
+            <LeaveApplicationEmpForm
+              onLeaveApplicationEmpSubmit={this.handleLeaveApplicationEmpSubmit}
+              onFormClose={this.handleFormClose}
+              onGenderChange={this.handleAddFormGenderChange}
+            />
+          )}
+      </React.Fragment>
     );
   }
   handleLeaveApplicationEmpSubmit = event => {
@@ -48,20 +48,20 @@ class LeaveApplicationEmp extends Component {
     this.setState({ table: true });
 
     let body = {
-     
-    //  CompanyName: event.target[0].value,
-    //  Designation:  event.target[1].value,
-    //  FromDate:  event.target[2].value,
-    //  ToDate:  event.target[3].value,
 
-     Leavetype:  event.target[0].value,
-     FromDate: event.target[1].value,
-     ToDate: event.target[2].value,
-     Reasonforleave: event.target[3].value,
-     Status: event.target[4].value,
+      //  CompanyName: event.target[0].value,
+      //  Designation:  event.target[1].value,
+      //  FromDate:  event.target[2].value,
+      //  ToDate:  event.target[3].value,
+
+      Leavetype: event.target[0].value,
+      FromDate: event.target[1].value,
+      ToDate: event.target[2].value,
+      Reasonforleave: event.target[3].value,
+      Status: event.target[4].value,
     };
     axios
-      .post("http://localhost:4000/api/leave-application-emp/"+this.props.data["_id"], body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/leave-application-emp/" + this.props.data["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -83,7 +83,7 @@ class LeaveApplicationEmp extends Component {
     console.log("clicked6");
     this.setState({ editForm: true });
     this.setState({ editData: e });
-    this.setState({editFormGender:e["Gender"]})
+    this.setState({ editFormGender: e["Gender"] })
   };
   handleFormClose = () => {
     console.log("clicked1");
@@ -98,24 +98,24 @@ class LeaveApplicationEmp extends Component {
   //   this.setState({ table: true });
   // };
   handleLeaveApplicationEmpEditUpdate = (info, newInfo) => {
-    newInfo.preventDefault( );
-    console.log("zero data",newInfo.target[0].value);
-    let body = { 
-        Leavetype: newInfo.target[0].value,
-        FromDate: newInfo.target[1].value,
-        ToDate: newInfo.target[2].value,
-        Reasonforleave: newInfo.target[3].value,
-        Status: newInfo.target[4].value,
+    newInfo.preventDefault();
+    console.log("zero data", newInfo.target[0].value);
+    let body = {
+      Leavetype: newInfo.target[0].value,
+      FromDate: newInfo.target[1].value,
+      ToDate: newInfo.target[2].value,
+      Reasonforleave: newInfo.target[3].value,
+      Status: newInfo.target[4].value,
     };
     console.log("update", body);
     axios
       .put(
-        "http://localhost:4000/api/leave-application-emp/" + info["_id"],
+        "https://employee-management-fk-api.herokuapp.com/api/leave-application-emp/" + info["_id"],
         body, {
-          headers: {
-            authorization: localStorage.getItem("token") || ""
-          }
+        headers: {
+          authorization: localStorage.getItem("token") || ""
         }
+      }
       )
       .then(res => {
         this.setState({ table: false });

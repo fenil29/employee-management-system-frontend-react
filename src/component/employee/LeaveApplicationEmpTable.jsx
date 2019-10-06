@@ -24,7 +24,7 @@ class LeaveApplicationEmpTable extends Component {
     loading: true,
 
     columnDefs: [
-   
+
       {
         headerName: "Leave type",
         field: "Leavetype",
@@ -32,7 +32,7 @@ class LeaveApplicationEmpTable extends Component {
         // width: 150,
         // filter: true ,
       },
-     
+
       {
         headerName: "FromDate",
         field: "FromDate",
@@ -65,7 +65,7 @@ class LeaveApplicationEmpTable extends Component {
         // width: 150,
         // filter: true ,
       },
-      
+
 
       {
         headerName: "",
@@ -83,14 +83,14 @@ class LeaveApplicationEmpTable extends Component {
       }
     ],
     rowData: [],
-    
+
     defaultColDef: {
       resizable: true,
       width: 235,
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
 
@@ -102,12 +102,12 @@ class LeaveApplicationEmpTable extends Component {
   loadLeaveApplicationEmpData = () => {
     axios
       .get(
-        "http://localhost:4000/api/leave-application-emp/" +
-          this.props.data["_id"], {
-            headers: {
-              authorization: localStorage.getItem("token") || ""
-            }
-          }
+        "https://employee-management-fk-api.herokuapp.com/api/leave-application-emp/" +
+        this.props.data["_id"], {
+        headers: {
+          authorization: localStorage.getItem("token") || ""
+        }
+      }
       )
       .then(response => {
         this.leaveApplicationEmpObj = response.data;
@@ -119,12 +119,12 @@ class LeaveApplicationEmpTable extends Component {
         this.leaveApplicationEmpObj.leaveApplication.map(data => {
           let temp = {
             data,
-            Leavetype:data["Leavetype"],
-            FromDate:data["FromDate"].slice(0, 10),
-            ToDate:data["ToDate"].slice(0, 10),
-            Reasonforleave:data["Reasonforleave"],
-            Status:this.status(data["Status"]),
-            
+            Leavetype: data["Leavetype"],
+            FromDate: data["FromDate"].slice(0, 10),
+            ToDate: data["ToDate"].slice(0, 10),
+            Reasonforleave: data["Reasonforleave"],
+            Status: this.status(data["Status"]),
+
           };
 
           this.rowDataT.push(temp);
@@ -141,11 +141,11 @@ class LeaveApplicationEmpTable extends Component {
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
         .delete(
-          "http://localhost:4000/api/leave-application-emp/" + e1 + "/" + e2, {
-            headers: {
-              authorization: localStorage.getItem("token") || ""
-            }
+          "https://employee-management-fk-api.herokuapp.com/api/leave-application-emp/" + e1 + "/" + e2, {
+          headers: {
+            authorization: localStorage.getItem("token") || ""
           }
+        }
         )
         .then(res => {
           this.componentDidMount();
@@ -165,7 +165,7 @@ class LeaveApplicationEmpTable extends Component {
       <FontAwesomeIcon
         icon={faTrash}
         onClick={() =>
-          this.onLeaveApplicationEmpDelete(this.props.data["_id"],params.data.data["_id"])
+          this.onLeaveApplicationEmpDelete(this.props.data["_id"], params.data.data["_id"])
         }
       />
     );
@@ -217,44 +217,44 @@ class LeaveApplicationEmpTable extends Component {
 
         <div id="clear-both" />
 
-        
-{!this.state.loading ? (
-  <div
-    id="table-div"
-    className="ag-theme-balham"
-    //   style={
-    //     {
-    //     height: "500px",
-    //     width: "100%"
-    //   }
-    // }
-  >
-    <AgGridReact
-      columnDefs={this.state.columnDefs}
-      defaultColDef={this.state.defaultColDef}
-      columnTypes={this.state.columnTypes}
-      rowData={this.state.rowData}
-      // floatingFilter={true}
-      // onGridReady={this.onGridReady}
-      pagination={true}
-      paginationPageSize={10}
-      getRowHeight={this.state.getRowHeight}
-    />
-  </div>
-) : (
-  <div id="loading-bar">
-    <RingLoader
-      css={override}
-      sizeUnit={"px"}
-      size={50}
-      color={"#0000ff"}
-      loading={true}
-    />
-  </div>
-)}
+
+        {!this.state.loading ? (
+          <div
+            id="table-div"
+            className="ag-theme-balham"
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
+          >
+            <AgGridReact
+              columnDefs={this.state.columnDefs}
+              defaultColDef={this.state.defaultColDef}
+              columnTypes={this.state.columnTypes}
+              rowData={this.state.rowData}
+              // floatingFilter={true}
+              // onGridReady={this.onGridReady}
+              pagination={true}
+              paginationPageSize={10}
+              getRowHeight={this.state.getRowHeight}
+            />
+          </div>
+        ) : (
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
 
 
-       
+
       </div>
     );
   }

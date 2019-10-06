@@ -26,7 +26,7 @@ class PositionTable extends Component {
     loading: true,
 
     columnDefs: [
-   
+
       {
         headerName: "Company",
         field: "CompanyName",
@@ -34,7 +34,7 @@ class PositionTable extends Component {
         // width: 150,
         // filter: true ,
       },
-   
+
       {
         headerName: "Position",
         field: "PositionName",
@@ -42,8 +42,8 @@ class PositionTable extends Component {
         // width: 150,
         // filter: true ,
       },
-      
-      
+
+
 
       {
         headerName: "",
@@ -67,7 +67,7 @@ class PositionTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
 
@@ -77,7 +77,7 @@ class PositionTable extends Component {
 
   loadPositionData = () => {
     axios
-      .get("http://localhost:4000/api/position", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/position", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -93,8 +93,8 @@ class PositionTable extends Component {
           let temp = {
             data,
             CompanyName: data["company"][0]["CompanyName"],
-            PositionName:data["PositionName"],
-            
+            PositionName: data["PositionName"],
+
           };
 
           this.rowDataT.push(temp);
@@ -110,7 +110,7 @@ class PositionTable extends Component {
     console.log(e);
     if (window.confirm("Are you sure to delete this record ? ") == true) {
       axios
-        .delete("http://localhost:4000/api/position/" + e, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/position/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -118,11 +118,13 @@ class PositionTable extends Component {
         .then(res => {
           this.componentDidMount();
         })
-        .catch(err => {console.log(err);
+        .catch(err => {
+          console.log(err);
           console.log(err.response);
-          if(err.response.status==403){
-            window.alert(err.response.data) ;}
-        
+          if (err.response.status == 403) {
+            window.alert(err.response.data);
+          }
+
         });
     }
   };
@@ -168,12 +170,12 @@ class PositionTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -188,16 +190,16 @@ class PositionTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
         {/* <div id="inner-table-div">
           <table id="role-table">
             <thead>

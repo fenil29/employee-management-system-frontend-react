@@ -76,7 +76,7 @@ class Salary extends Component {
             TaxDeduction: event.target[7].value,
           };
           axios
-            .post("http://localhost:4000/api/salary/"+event.target[0].value, body, {
+            .post("https://employee-management-fk-api.herokuapp.com/api/salary/"+event.target[0].value, body, {
               headers: {
                 authorization: localStorage.getItem("token") || ""
               }
@@ -149,7 +149,7 @@ else{
     console.log("update", body);
     axios
       .put(
-        "http://localhost:4000/api/salary/" + info["salary"][0]["_id"],
+        "https://employee-management-fk-api.herokuapp.com/api/salary/" + info["salary"][0]["_id"],
         body, {
           headers: {
             authorization: localStorage.getItem("token") || ""

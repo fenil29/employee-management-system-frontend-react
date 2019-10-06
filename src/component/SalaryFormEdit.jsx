@@ -56,7 +56,7 @@ class SalaryFormEdit extends Component {
       
       loadSalaryInfo = () => {
         axios
-          .get("http://localhost:4000/api/salary", {
+          .get("https://employee-management-fk-api.herokuapp.com/api/salary", {
             headers: {
               authorization: localStorage.getItem("token") || ""
             }

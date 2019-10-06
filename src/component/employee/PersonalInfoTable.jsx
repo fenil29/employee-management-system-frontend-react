@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import "./PersonalInfoTable.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { RingLoader } from "react-spinners";
 import { css } from "@emotion/core";
 import { Button } from "react-bootstrap";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -77,12 +77,12 @@ class PersonalInfoTable extends Component {
         // filter: true ,
         // width: 150,
       },
-     
+
       {
         headerName: "DOB",
         field: "DOB",
         sortable: true,
-        filter: true ,
+        filter: true,
         type: ["dateColumn"],
         filter: "agDateColumnFilter"
       },
@@ -103,18 +103,18 @@ class PersonalInfoTable extends Component {
       {
         headerName: "",
         field: "edit",
-        filter: false ,
+        filter: false,
         width: 30,
         // cellRenderer:this.ageCellRendererFunc,
         // cellRendererFramework: function(params) {
         //   return <button OnClick={console.log("pa",params)}>Test</button>;
         // },
         cellRendererFramework: this.renderEditButton.bind(this),
-      
-    
+
+
       },
 
-      
+
     ],
     rowData: [],
     defaultColDef: {
@@ -123,7 +123,7 @@ class PersonalInfoTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
   };
@@ -131,7 +131,7 @@ class PersonalInfoTable extends Component {
   rowDataT = [];
   loadPersonalInfoData = () => {
     axios
-      .get("http://localhost:4000/api/personal-info/"+ this.props.data["_id"], {
+      .get("https://employee-management-fk-api.herokuapp.com/api/personal-info/" + this.props.data["_id"], {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -142,25 +142,25 @@ class PersonalInfoTable extends Component {
         this.setState({ personalInfoData: response.data });
         this.setState({ loading: false });
         this.rowDataT = [];
-        console.log("personalInfoObj",this.personalInfoObj)
+        console.log("personalInfoObj", this.personalInfoObj)
         // this.personalInfoObj.map(data => {
-          let data=this.personalInfoObj;
-          let temp = {
-            data,
-            FirstName: data["FirstName"] || "Not Avaiable",
-            MiddleName: data["MiddleName"] || "Not Avaiable",
-            LastName: data["LastName"] || "Not Avaiable",
-            Gender: data["Gender"] || "Not Avaiable",
-            ContactNo: data["ContactNo"] || "Not Avaiable",
-            Email: data["Email"] || "Not Avaiable",
-            PANcardNo: data["PANcardNo"] || "Not Avaiable",
-            DOB: data["DOB"].slice(0, 10) || "Not Avaiable",
-            Hobbies: data["Hobbies"] || "Not Avaiable",
-            PresentAddress: data["PresentAddress"] || "Not Avaiable",
+        let data = this.personalInfoObj;
+        let temp = {
+          data,
+          FirstName: data["FirstName"] || "Not Avaiable",
+          MiddleName: data["MiddleName"] || "Not Avaiable",
+          LastName: data["LastName"] || "Not Avaiable",
+          Gender: data["Gender"] || "Not Avaiable",
+          ContactNo: data["ContactNo"] || "Not Avaiable",
+          Email: data["Email"] || "Not Avaiable",
+          PANcardNo: data["PANcardNo"] || "Not Avaiable",
+          DOB: data["DOB"].slice(0, 10) || "Not Avaiable",
+          Hobbies: data["Hobbies"] || "Not Avaiable",
+          PresentAddress: data["PresentAddress"] || "Not Avaiable",
 
-          };
-          
-          this.rowDataT.push(temp);
+        };
+
+        this.rowDataT.push(temp);
         // });
         this.setState({ rowData: this.rowDataT });
         // console.log("rowData",this.state.rowData)
@@ -175,7 +175,7 @@ class PersonalInfoTable extends Component {
     console.log(e);
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
-        .delete("http://localhost:4000/api/personalInfo/" + e, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/personalInfo/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -191,20 +191,20 @@ class PersonalInfoTable extends Component {
   componentDidMount() {
     this.loadPersonalInfoData();
   }
-  renderEditButton(params){
+  renderEditButton(params) {
     console.log(params);
-    if(this.props.back){return <React.Fragment/>}
+    if (this.props.back) { return <React.Fragment /> }
     return <FontAwesomeIcon
-    icon={faEdit}
-    onClick={() => this.props.onEditPersonalInfo(params.data.data)}
-  />;
+      icon={faEdit}
+      onClick={() => this.props.onEditPersonalInfo(params.data.data)}
+    />;
   }
 
   render() {
     return (
       <div id="table-outer-div-scroll">
-        <h2 id="role-title">Employee Personal Details {this.props.back?"of " +this.props.data["FirstName"]+" "+this.props.data["LastName"]:""}</h2>
-{/* 
+        <h2 id="role-title">Employee Personal Details {this.props.back ? "of " + this.props.data["FirstName"] + " " + this.props.data["LastName"] : ""}</h2>
+        {/* 
         <Button
           variant="primary"
           id="add-button"
@@ -213,14 +213,14 @@ class PersonalInfoTable extends Component {
           <FontAwesomeIcon icon={faPlus} id="plus-icon" />
           Add
         </Button> */}
-        {this.props.back?(<Link to="/hr/employee">
-         <Button
-          variant="primary"
-          id="add-button"
-        >
-          Back
+        {this.props.back ? (<Link to="/hr/employee">
+          <Button
+            variant="primary"
+            id="add-button"
+          >
+            Back
         </Button>
-        </Link>):<React.Fragment/>}
+        </Link>) : <React.Fragment />}
 
 
         <div id="clear-both" />
@@ -229,12 +229,12 @@ class PersonalInfoTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -249,18 +249,18 @@ class PersonalInfoTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
 
-      
+
       </div>
     );
   }

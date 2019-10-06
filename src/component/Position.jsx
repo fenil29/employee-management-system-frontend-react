@@ -39,24 +39,24 @@ class Position extends Component {
               editData={this.state.editData}
             />
           ) : (
-            <PositionTable
-              onAddPosition={this.handleAddPosition}
-              onEditPosition={this.handleEditPosition}
-            />
-          )
+              <PositionTable
+                onAddPosition={this.handleAddPosition}
+                onEditPosition={this.handleEditPosition}
+              />
+            )
         ) : (
-          <PositionForm
-            onPositionSubmit={this.handlePositionSubmit}
-            onFormClose={this.handleFormClose}
-          />
-        )}
+            <PositionForm
+              onPositionSubmit={this.handlePositionSubmit}
+              onFormClose={this.handleFormClose}
+            />
+          )}
 
         {/* <div>fenil</div> */}
         {/* <Route path="/admin/Position/table" exact component={PositionTable} /> */}
         {/* <Route path="/admin/Position/form" exact component={() => <PositionForm onPositionSubmit={this.handlePositionSubmit} />} /> */}
 
         {/* <PositionTable/> */}
-        </React.Fragment>
+      </React.Fragment>
 
       //  </Router>
     );
@@ -73,7 +73,7 @@ class Position extends Component {
     //  let body= "CompanyID=" + event.target[0].value + "&Position=" + event.target[1].value;
     //  let body= "FenilKaneria";
     axios
-      .post("http://localhost:4000/api/position", body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/position", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -121,12 +121,12 @@ class Position extends Component {
     console.log("update", body);
     axios
       .put(
-        "http://localhost:4000/api/position/" + info["_id"],
+        "https://employee-management-fk-api.herokuapp.com/api/position/" + info["_id"],
         body, {
-          headers: {
-            authorization: localStorage.getItem("token") || ""
-          }
+        headers: {
+          authorization: localStorage.getItem("token") || ""
         }
+      }
       )
       .then(res => {
         // this.componentDidMount();

@@ -83,7 +83,7 @@ class AdminProjectBid extends Component {
     //  let body= "CompanyID=" + event.target[0].value + "&ProjectBid=" + event.target[1].value;
     //  let body= "FenilKaneria";
     axios
-      .post("http://localhost:4000/api/admin/project-bid", body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/admin/project-bid", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -138,7 +138,7 @@ class AdminProjectBid extends Component {
     };
     console.log("update", body);
     axios
-      .put("http://localhost:4000/api/admin/project-bid/" + info["_id"], body, {
+      .put("https://employee-management-fk-api.herokuapp.com/api/admin/project-bid/" + info["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

@@ -5,17 +5,17 @@ import { Form, Button, Col, Row } from "react-bootstrap";
 
 class CompanyFormEdit extends Component {
   state = {
-   
+
     status: "",
-    countryData : [],
-    stateData : [],
-    cityData : [],
-    filteredCountryData : [],
-    filteredStateData : [],
-    filteredCityData : [],
+    countryData: [],
+    stateData: [],
+    cityData: [],
+    filteredCountryData: [],
+    filteredStateData: [],
+    filteredCityData: [],
 
     CompanyNameData: this.props.editData["CompanyName"],
-    AddressData: this.props.editData["Address"],   
+    AddressData: this.props.editData["Address"],
     PostalCodeData: this.props.editData["PostalCode"],
     WebsiteData: this.props.editData["Website"],
     EmailData: this.props.editData["Email"],
@@ -24,7 +24,7 @@ class CompanyFormEdit extends Component {
     FaxNoData: this.props.editData["FaxNo"],
     PanNoData: this.props.editData["PanNo"],
     GSTNoData: this.props.editData["GSTNo"],
-    CINNoData: this.props.editData["CINNo"], 
+    CINNoData: this.props.editData["CINNo"],
   };
   onCompanyNameDataChange(e) {
     this.setState({ CompanyNameData: e.target.value });
@@ -45,7 +45,7 @@ class CompanyFormEdit extends Component {
     this.setState({ ContactPersonData: e.target.value });
   }
   onContactNoDataChange(e) {
-    this.setState({ContactNoData: e.target.value });
+    this.setState({ ContactNoData: e.target.value });
   }
   onFaxNoDataChange(e) {
     this.setState({ FaxNoData: e.target.value });
@@ -59,11 +59,11 @@ class CompanyFormEdit extends Component {
   onCINNoDataChange(e) {
     this.setState({ CINNoData: e.target.value });
   }
-  
-  
+
+
   loadCountryInfo = () => {
     axios
-      .get("http://localhost:4000/api/country", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/country", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -77,13 +77,13 @@ class CompanyFormEdit extends Component {
   };
   loadStateInfo = () => {
     axios
-      .get("http://localhost:4000/api/state", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/state", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
       })
       .then(response => {
-          this.setState({ stateData: response.data });
+        this.setState({ stateData: response.data });
       })
       .catch(error => {
         console.log(error);
@@ -91,13 +91,13 @@ class CompanyFormEdit extends Component {
   };
   loadCityInfo = () => {
     axios
-      .get("http://localhost:4000/api/city", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/city", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
       })
       .then(response => {
-          this.setState({ cityData: response.data });
+        this.setState({ cityData: response.data });
       })
       .catch(error => {
         console.log(error);
@@ -111,26 +111,26 @@ class CompanyFormEdit extends Component {
   onCountryChange(e) {
     console.log(e.target.value);
     let currentCountry = e.target.value;
- 
-        let filteredState = this.state.stateData.filter(
-          data => data["country"][0]["_id"] == currentCountry
-        );
-        this.setState({ filteredStateData: filteredState });
+
+    let filteredState = this.state.stateData.filter(
+      data => data["country"][0]["_id"] == currentCountry
+    );
+    this.setState({ filteredStateData: filteredState });
 
   }
   onStateChange(e) {
     console.log(e.target.value);
-  let currentState=e.target.value;   
-         let filteredCity = this.state.cityData.filter(
-          data => data["state"][0]["_id"] == currentState
-        );
-        this.setState({ filteredCityData: filteredCity });
+    let currentState = e.target.value;
+    let filteredCity = this.state.cityData.filter(
+      data => data["state"][0]["_id"] == currentState
+    );
+    this.setState({ filteredCityData: filteredCity });
   }
 
-  render() {   
+  render() {
     return (
-      <React.Fragment>       
-        <h2 id="role-form-title">Edit Project Bid Details</h2>       
+      <React.Fragment>
+        <h2 id="role-form-title">Edit Project Bid Details</h2>
         <div id="role-form-outer-div">
           <Form
             id="form"
@@ -153,7 +153,7 @@ class CompanyFormEdit extends Component {
                 />
               </Col>
             </Form.Group>
-            
+
             <Form.Group as={Row}>
               <Form.Label column sm={2}>
                 Address
@@ -165,7 +165,7 @@ class CompanyFormEdit extends Component {
                   plassholder="address"
                   required
                   value={this.state.AddressData}
-        onChange={value => this.onAddressDataChange(value)}
+                  onChange={value => this.onAddressDataChange(value)}
                 />
               </Col>
             </Form.Group>
@@ -179,7 +179,7 @@ class CompanyFormEdit extends Component {
                   as="select"
                   name="country"
                   onChange={this.onCountryChange.bind(this)}
-                >                
+                >
                   <option value="" disabled selected>
                     Select your option
                   </option>
@@ -200,7 +200,7 @@ class CompanyFormEdit extends Component {
                   name="state"
                   required
                   onChange={this.onStateChange.bind(this)}
-                >                
+                >
                   <option value="" disabled selected>
                     Select your option
                   </option>
@@ -216,7 +216,7 @@ class CompanyFormEdit extends Component {
                 City
               </Form.Label>
               <Col sm={10} className="form-input">
-                <Form.Control as="select" name="state" required>                 
+                <Form.Control as="select" name="state" required>
                   <option value="" disabled selected>
                     Select your option
                   </option>
@@ -233,7 +233,7 @@ class CompanyFormEdit extends Component {
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control type="number" placeholder="PostalCode" required value={this.state.PostalCodeData}
-        onChange={value => this.onPostalCodeDataChange(value)}/>
+                  onChange={value => this.onPostalCodeDataChange(value)} />
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
@@ -242,7 +242,7 @@ class CompanyFormEdit extends Component {
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control type="Text" placeholder="Website" required value={this.state.WebsiteData}
-        onChange={value => this.onWebsiteDataChange(value)}/>
+                  onChange={value => this.onWebsiteDataChange(value)} />
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
@@ -251,7 +251,7 @@ class CompanyFormEdit extends Component {
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control type="email" placeholder="Email" required value={this.state.EmailData}
-        onChange={value => this.onEmailDataChange(value)}/>
+                  onChange={value => this.onEmailDataChange(value)} />
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
@@ -264,7 +264,7 @@ class CompanyFormEdit extends Component {
                   placeholder="Contact Person"
                   required
                   value={this.state.ContactPersonData}
-        onChange={value => this.onContactPersonDataChange(value)}
+                  onChange={value => this.onContactPersonDataChange(value)}
                 />
               </Col>
             </Form.Group>
@@ -274,7 +274,7 @@ class CompanyFormEdit extends Component {
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control type="Text" placeholder="Contact No" required value={this.state.ContactNoData}
-        onChange={value => this.onContactNoDataChange(value)} />
+                  onChange={value => this.onContactNoDataChange(value)} />
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
@@ -283,7 +283,7 @@ class CompanyFormEdit extends Component {
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control type="Text" placeholder="FaxNo" required value={this.state.FaxNoData}
-        onChange={value => this.onFaxNoDataChange(value)}/>
+                  onChange={value => this.onFaxNoDataChange(value)} />
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
@@ -296,7 +296,7 @@ class CompanyFormEdit extends Component {
                   placeholder=" PanCard No  "
                   required
                   value={this.state.PanNoData}
-        onChange={value => this.onPanNoDataChange(value)}
+                  onChange={value => this.onPanNoDataChange(value)}
                 />
               </Col>
             </Form.Group>
@@ -306,7 +306,7 @@ class CompanyFormEdit extends Component {
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control type="Text" placeholder="GSTNo" required value={this.state.GSTNoData}
-        onChange={value => this.onGSTNoDataChange(value)}/>
+                  onChange={value => this.onGSTNoDataChange(value)} />
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
@@ -315,7 +315,7 @@ class CompanyFormEdit extends Component {
               </Form.Label>
               <Col sm={10} className="form-input">
                 <Form.Control type="Text" placeholder="CINNo" required value={this.state.CINNoData}
-        onChange={value => this.onCINNoDataChange(value)}/>
+                  onChange={value => this.onCINNoDataChange(value)} />
               </Col>
             </Form.Group>
 

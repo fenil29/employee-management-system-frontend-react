@@ -28,7 +28,7 @@ class FamilyInfoTable extends Component {
 
 
     columnDefs: [
-   
+
       {
         headerName: "Name",
         field: "Name",
@@ -59,7 +59,7 @@ class FamilyInfoTable extends Component {
         // width: 150,
         // filter: true ,
       },
-      
+
 
       {
         headerName: "",
@@ -83,7 +83,7 @@ class FamilyInfoTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
 
@@ -95,7 +95,7 @@ class FamilyInfoTable extends Component {
 
   loadFamilyInfoData = () => {
     axios
-      .get("http://localhost:4000/api/family-info/" + this.props.data["_id"], {
+      .get("https://employee-management-fk-api.herokuapp.com/api/family-info/" + this.props.data["_id"], {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -110,11 +110,11 @@ class FamilyInfoTable extends Component {
         this.familyInfoObj.familyInfo.map(data => {
           let temp = {
             data,
-            Name:data["Name"],
-            Relationship:data["Relationship"],
-            DOB:data["DOB"].slice(0, 10),
-            Occupation:data["Occupation"],
-            
+            Name: data["Name"],
+            Relationship: data["Relationship"],
+            DOB: data["DOB"].slice(0, 10),
+            Occupation: data["Occupation"],
+
           };
 
           this.rowDataT.push(temp);
@@ -130,7 +130,7 @@ class FamilyInfoTable extends Component {
     console.log(e1, e2);
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
-        .delete("http://localhost:4000/api/family-info/" + e1 + "/" + e2, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/family-info/" + e1 + "/" + e2, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -149,18 +149,18 @@ class FamilyInfoTable extends Component {
 
   renderButton(params) {
     console.log(params);
-    if(this.props.back){return <React.Fragment/>}
+    if (this.props.back) { return <React.Fragment /> }
     return (
       <FontAwesomeIcon
         icon={faTrash}
         onClick={() =>
-          this.onFamilyInfoDelete(this.props.data["_id"],params.data.data["_id"])}
+          this.onFamilyInfoDelete(this.props.data["_id"], params.data.data["_id"])}
       />
     );
   }
   renderEditButton(params) {
     console.log(params);
-    if(this.props.back){return <React.Fragment/>}
+    if (this.props.back) { return <React.Fragment /> }
     return (
       <FontAwesomeIcon
         icon={faEdit}
@@ -172,27 +172,27 @@ class FamilyInfoTable extends Component {
   render() {
     return (
       <div id="table-outer-div-scroll">
-        <h2 id="role-title">Employee Family Details {this.props.back?"of " +this.props.data["FirstName"]+" "+this.props.data["LastName"]:""}</h2>
+        <h2 id="role-title">Employee Family Details {this.props.back ? "of " + this.props.data["FirstName"] + " " + this.props.data["LastName"] : ""}</h2>
 
-        {this.props.back?(<Link to="/hr/employee">
-         <Button
-          variant="primary"
-          id="add-button"
-        >
-          Back
+        {this.props.back ? (<Link to="/hr/employee">
+          <Button
+            variant="primary"
+            id="add-button"
+          >
+            Back
         </Button>
-        </Link>):
-        <Button
-          variant="primary"
-          id="add-button"
-          onClick={this.props.onAddFamilyInfo}
-        >
-          <FontAwesomeIcon icon={faPlus} id="plus-icon" />
-          Add
+        </Link>) :
+          <Button
+            variant="primary"
+            id="add-button"
+            onClick={this.props.onAddFamilyInfo}
+          >
+            <FontAwesomeIcon icon={faPlus} id="plus-icon" />
+            Add
         </Button>}
 
 
-       
+
 
 
 
@@ -202,12 +202,12 @@ class FamilyInfoTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -222,16 +222,16 @@ class FamilyInfoTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
 
       </div>
     );

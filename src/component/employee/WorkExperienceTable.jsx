@@ -95,7 +95,7 @@ class WorkExperienceTable extends Component {
   loadWorkExperienceData = () => {
     axios
       .get(
-        "http://localhost:4000/api/work-experience/" + this.props.data["_id"], {
+        "https://employee-management-fk-api.herokuapp.com/api/work-experience/" + this.props.data["_id"], {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -131,7 +131,7 @@ class WorkExperienceTable extends Component {
     console.log(e1, e2);
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
-        .delete("http://localhost:4000/api/work-experience/" + e1 + "/" + e2, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/work-experience/" + e1 + "/" + e2, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }

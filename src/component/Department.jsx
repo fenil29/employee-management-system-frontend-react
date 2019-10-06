@@ -39,24 +39,24 @@ class Department extends Component {
               editData={this.state.editData}
             />
           ) : (
-            <DepartmentTable
-              onAddDepartment={this.handleAddDepartment}
-              onEditDepartment={this.handleEditDepartment}
-            />
-          )
+              <DepartmentTable
+                onAddDepartment={this.handleAddDepartment}
+                onEditDepartment={this.handleEditDepartment}
+              />
+            )
         ) : (
-          <DepartmentForm
-            onDepartmentSubmit={this.handleDepartmentSubmit}
-            onFormClose={this.handleFormClose}
-          />
-        )}
+            <DepartmentForm
+              onDepartmentSubmit={this.handleDepartmentSubmit}
+              onFormClose={this.handleFormClose}
+            />
+          )}
 
         {/* <div>fenil</div> */}
         {/* <Route path="/admin/Department/table" exact component={DepartmentTable} /> */}
         {/* <Route path="/admin/Department/form" exact component={() => <DepartmentForm onDepartmentSubmit={this.handleDepartmentSubmit} />} /> */}
 
         {/* <DepartmentTable/> */}
-        </React.Fragment>
+      </React.Fragment>
 
       //  </Router>
     );
@@ -73,7 +73,7 @@ class Department extends Component {
     //  let body= "CompanyID=" + event.target[0].value + "&Department=" + event.target[1].value;
     //  let body= "FenilKaneria";
     axios
-      .post("http://localhost:4000/api/department", body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/department", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -123,12 +123,12 @@ class Department extends Component {
     console.log("update", body);
     axios
       .put(
-        "http://localhost:4000/api/department/" + info["_id"],
+        "https://employee-management-fk-api.herokuapp.com/api/department/" + info["_id"],
         body, {
-          headers: {
-            authorization: localStorage.getItem("token") || ""
-          }
+        headers: {
+          authorization: localStorage.getItem("token") || ""
         }
+      }
       )
       .then(res => {
         // this.componentDidMount();

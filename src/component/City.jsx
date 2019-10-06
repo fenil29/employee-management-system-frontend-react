@@ -24,18 +24,18 @@ class City extends Component {
               editData={this.state.editData}
             />
           ) : (
-            <CityTable
-              onAddCity={this.handleAddCity}
-              onEditCity={this.handleEditCity}
-            />
-          )
+              <CityTable
+                onAddCity={this.handleAddCity}
+                onEditCity={this.handleEditCity}
+              />
+            )
         ) : (
-          <CityForm
-            onCitySubmit={this.handleCitySubmit}
-            onFormClose={this.handleFormClose}
-          />
-        )}
-        </React.Fragment>
+            <CityForm
+              onCitySubmit={this.handleCitySubmit}
+              onFormClose={this.handleFormClose}
+            />
+          )}
+      </React.Fragment>
     );
   }
   handleCitySubmit = event => {
@@ -48,7 +48,7 @@ class City extends Component {
       CityName: event.target[2].value
     };
     axios
-      .post("http://localhost:4000/api/city", body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/city", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -94,7 +94,7 @@ class City extends Component {
     };
 
     axios
-      .put("http://localhost:4000/api/city/"+info["_id"], body, {
+      .put("https://employee-management-fk-api.herokuapp.com/api/city/" + info["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

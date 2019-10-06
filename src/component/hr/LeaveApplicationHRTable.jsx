@@ -94,7 +94,7 @@ class LeaveApplicationHRTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
   };
@@ -103,7 +103,7 @@ class LeaveApplicationHRTable extends Component {
 
   loadLeaveApplicationHRData = () => {
     axios
-      .get("http://localhost:4000/api/leave-application-hr/", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/leave-application-hr/", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -144,11 +144,11 @@ class LeaveApplicationHRTable extends Component {
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
         .delete(
-          "http://localhost:4000/api/leave-application-hr/" + e1 + "/" + e2, {
-            headers: {
-              authorization: localStorage.getItem("token") || ""
-            }
+          "https://employee-management-fk-api.herokuapp.com/api/leave-application-hr/" + e1 + "/" + e2, {
+          headers: {
+            authorization: localStorage.getItem("token") || ""
           }
+        }
         )
         .then(res => {
           this.componentDidMount();
@@ -207,12 +207,12 @@ class LeaveApplicationHRTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -227,16 +227,16 @@ class LeaveApplicationHRTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
 
         {/* <div id="inner-table-div">
           <table id="role-table">

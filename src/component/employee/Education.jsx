@@ -17,7 +17,7 @@ class Education extends Component {
       <React.Fragment>
         {/* <h1>iiiiiiiiiinnnnnnnnnnnnnn{
           JSON.stringify(this.props.data)}</h1> */}
-        
+
         {this.state.table ? (
           this.state.editForm ? (
             <EducationFormEdit
@@ -26,21 +26,21 @@ class Education extends Component {
               editData={this.state.editData}
             />
           ) : (
-            <EducationTable
-              onAddEducation={this.handleAddEducation}
-              onEditEducation={this.handleEditEducation} 
-              data={this.props.data}      
-              back={this.props.back}       
-            />
-          )
+              <EducationTable
+                onAddEducation={this.handleAddEducation}
+                onEditEducation={this.handleEditEducation}
+                data={this.props.data}
+                back={this.props.back}
+              />
+            )
         ) : (
-          <EducationForm
-            onEducationSubmit={this.handleEducationSubmit}
-            onFormClose={this.handleFormClose}
-            onGenderChange={this.handleAddFormGenderChange}
-          />
-        )}    
-        </React.Fragment>
+            <EducationForm
+              onEducationSubmit={this.handleEducationSubmit}
+              onFormClose={this.handleFormClose}
+              onGenderChange={this.handleAddFormGenderChange}
+            />
+          )}
+      </React.Fragment>
     );
   }
   handleEducationSubmit = event => {
@@ -49,14 +49,14 @@ class Education extends Component {
     this.setState({ table: true });
 
     let body = {
-     
-     SchoolUniversity: event.target[0].value,
-     Degree:  event.target[1].value,
-     Grade:  event.target[2].value,
-     PassingOfYear:  event.target[3].value,
+
+      SchoolUniversity: event.target[0].value,
+      Degree: event.target[1].value,
+      Grade: event.target[2].value,
+      PassingOfYear: event.target[3].value,
     };
     axios
-      .post("http://localhost:4000/api/education/"+this.props.data["_id"], body, {
+      .post("https://employee-management-fk-api.herokuapp.com/api/education/" + this.props.data["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -78,7 +78,7 @@ class Education extends Component {
     console.log("clicked6");
     this.setState({ editForm: true });
     this.setState({ editData: e });
-    this.setState({editFormGender:e["Gender"]})
+    this.setState({ editFormGender: e["Gender"] })
   };
   handleFormClose = () => {
     console.log("clicked1");
@@ -93,23 +93,23 @@ class Education extends Component {
   //   this.setState({ table: true });
   // };
   handleEducationEditUpdate = (info, newInfo) => {
-    newInfo.preventDefault( );
-    console.log("zero data",newInfo.target[0].value);
-    let body = { 
-        SchoolUniversity:  newInfo.target[0].value,
-        Degree:   newInfo.target[1].value,
-        Grade:   newInfo.target[2].value,
-        PassingOfYear:   newInfo.target[3].value,
+    newInfo.preventDefault();
+    console.log("zero data", newInfo.target[0].value);
+    let body = {
+      SchoolUniversity: newInfo.target[0].value,
+      Degree: newInfo.target[1].value,
+      Grade: newInfo.target[2].value,
+      PassingOfYear: newInfo.target[3].value,
     };
     console.log("update", body);
     axios
       .put(
-        "http://localhost:4000/api/education/" + info["_id"],
+        "https://employee-management-fk-api.herokuapp.com/api/education/" + info["_id"],
         body, {
-          headers: {
-            authorization: localStorage.getItem("token") || ""
-          }
+        headers: {
+          authorization: localStorage.getItem("token") || ""
         }
+      }
       )
       .then(res => {
         this.setState({ table: false });

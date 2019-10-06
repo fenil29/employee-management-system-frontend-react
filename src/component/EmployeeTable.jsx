@@ -49,7 +49,7 @@ class AdminEmployeeTable extends Component {
         headerName: "Account Access",
         field: "Account",
         sortable: true,
-        
+
         // width: 70,
         // filter: true ,
       },
@@ -81,7 +81,7 @@ class AdminEmployeeTable extends Component {
         headerName: "DOB",
         field: "DOB",
         sortable: true,
-        filter: true ,
+        filter: true,
         type: ["dateColumn"],
         filter: "agDateColumnFilter"
       },
@@ -92,12 +92,12 @@ class AdminEmployeeTable extends Component {
         width: 117,
         // filter: true ,
       },
-   
+
       {
         headerName: "Role",
         field: "RoleName",
         sortable: true,
-        
+
         width: 70,
         // filter: true ,
       },
@@ -118,7 +118,7 @@ class AdminEmployeeTable extends Component {
         // filter: true ,
       },
 
-   
+
 
       {
         headerName: "Date Of Joining",
@@ -127,48 +127,48 @@ class AdminEmployeeTable extends Component {
         ,
         width: 120,
         // filter: true ,
-        
+
       },
       {
         headerName: "",
         field: "info",
-        filter: false ,
+        filter: false,
         width: 30,
         // cellRenderer:this.ageCellRendererFunc,
         // cellRendererFramework: function(params) {
         //   return <button OnClick={console.log("pa",params)}>Test</button>;
         // },
         cellRendererFramework: this.renderInfoButton.bind(this),
-      
-    
+
+
       },
       {
         headerName: "",
         field: "edit",
-        filter: false ,
+        filter: false,
         width: 30,
         // cellRenderer:this.ageCellRendererFunc,
         // cellRendererFramework: function(params) {
         //   return <button OnClick={console.log("pa",params)}>Test</button>;
         // },
         cellRendererFramework: this.renderEditButton.bind(this),
-      
-    
+
+
       },
       {
         headerName: "",
         field: "delete",
-        filter: false ,
+        filter: false,
         width: 30,
         // cellRenderer:this.ageCellRendererFunc,
         // cellRendererFramework: function(params) {
         //   return <button OnClick={console.log("pa",params)}>Test</button>;
         // },
         cellRendererFramework: this.renderButton.bind(this),
-      
-    
+
+
       },
-      
+
     ],
     rowData: [],
     defaultColDef: {
@@ -177,7 +177,7 @@ class AdminEmployeeTable extends Component {
       filter: "agTextColumnFilter"
       // filter: true ,
     },
-    getRowHeight: function(params) {
+    getRowHeight: function (params) {
       return 35;
     }
   };
@@ -186,7 +186,7 @@ class AdminEmployeeTable extends Component {
 
   loadEmployeeData = () => {
     axios
-      .get("http://localhost:4000/api/employee", {
+      .get("https://employee-management-fk-api.herokuapp.com/api/employee", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -202,8 +202,8 @@ class AdminEmployeeTable extends Component {
             data,
             Email: data["Email"],
             Password: data["Password"],
-            Account: data["Account"]==1?"Admin":(data["Account"]==2?"HR":(data["Account"]==3?"Employee":"")),
-            RoleName: data["role"][0]["RoleName"] ,
+            Account: data["Account"] == 1 ? "Admin" : (data["Account"] == 2 ? "HR" : (data["Account"] == 3 ? "Employee" : "")),
+            RoleName: data["role"][0]["RoleName"],
             FirstName: data["FirstName"],
             MiddleName: data["MiddleName"],
             LastName: data["LastName"],
@@ -214,7 +214,7 @@ class AdminEmployeeTable extends Component {
             PositionName: data["position"][0]["PositionName"],
             DateOfJoining: data["DateOfJoining"].slice(0, 10)
           };
-          
+
           this.rowDataT.push(temp);
         });
         this.setState({ rowData: this.rowDataT });
@@ -228,7 +228,7 @@ class AdminEmployeeTable extends Component {
     console.log(e);
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
-        .delete("http://localhost:4000/api/employee/" + e, {
+        .delete("https://employee-management-fk-api.herokuapp.com/api/employee/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -244,30 +244,30 @@ class AdminEmployeeTable extends Component {
   componentDidMount() {
     this.loadEmployeeData();
   }
-  handleClick=(e)=>{
+  handleClick = (e) => {
     console.log(e);
   }
-  renderInfoButton(params){
+  renderInfoButton(params) {
     console.log(params);
     return <div>
-    <FontAwesomeIcon
-      icon={faInfoCircle}
-      onClick={() => this.props.onEmpInfo(params.data.data)}
-    /></div>;
+      <FontAwesomeIcon
+        icon={faInfoCircle}
+        onClick={() => this.props.onEmpInfo(params.data.data)}
+      /></div>;
   }
-  renderButton(params){
+  renderButton(params) {
     console.log(params);
     return <FontAwesomeIcon
-    icon={faTrash}
-    onClick={() => this.onEmployeeDelete(params.data.data["_id"])}
-  />;
+      icon={faTrash}
+      onClick={() => this.onEmployeeDelete(params.data.data["_id"])}
+    />;
   }
-  renderEditButton(params){
+  renderEditButton(params) {
     console.log(params);
     return <FontAwesomeIcon
-    icon={faEdit}
-    onClick={() => this.props.onEditEmployee(params.data.data)}
-  />;
+      icon={faEdit}
+      onClick={() => this.props.onEditEmployee(params.data.data)}
+    />;
   }
 
   searchChange = e => {
@@ -334,12 +334,12 @@ class AdminEmployeeTable extends Component {
           <div
             id="table-div"
             className="ag-theme-balham"
-            //   style={
-            //     {
-            //     height: "500px",
-            //     width: "100%"
-            //   }
-            // }
+          //   style={
+          //     {
+          //     height: "500px",
+          //     width: "100%"
+          //   }
+          // }
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
@@ -354,17 +354,17 @@ class AdminEmployeeTable extends Component {
             />
           </div>
         ) : (
-          <div id="loading-bar">
-            <RingLoader
-              css={override}
-              sizeUnit={"px"}
-              size={50}
-              color={"#0000ff"}
-              loading={true}
-            />
-          </div>
-        )}
-        
+            <div id="loading-bar">
+              <RingLoader
+                css={override}
+                sizeUnit={"px"}
+                size={50}
+                color={"#0000ff"}
+                loading={true}
+              />
+            </div>
+          )}
+
       </div>
     );
   }
