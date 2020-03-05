@@ -2,6 +2,12 @@
 
 Note: this is a repository of Employee Management System Frontend. the repository of the backend is available here: https://github.com/fenil29/employee-management-system-backend-node
 
+-------------
+
+Website: https://employee-management-fk.netlify.com
+
+-------------
+
 - Employee Management system is a web application that enables users to create and store Employee Records
 - The application also provides facilities of a payroll system and leave application
 - It is a management system that helps to manage employees and also the company’s different task and project
@@ -36,4 +42,4 @@ The different part or module of this project is as follows:
 
 -------------
 
-Website: https://employee-management-fk.netlify.com
+
