@@ -8,7 +8,7 @@ Website: https://employee-management-fk.netlify.com
 
 -------------
 
-- Employee Management system is a web application that enables users to create and store Employee Records
+- Employee Management system is a web application that enables users to create,store and manage Employee Records
 - The application also provides facilities of a payroll system and leave application
 - It is a management system that helps to manage employees and also the company’s different task and project
 - Employee management system can manage and store details of employees like employees personal info and also details of different department of the company and different branches of the organization
