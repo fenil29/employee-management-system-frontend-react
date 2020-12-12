@@ -227,18 +227,19 @@ class AdminEmployeeTable extends Component {
   onEmployeeDelete = e => {
     console.log(e);
     if (window.confirm("Are you sure to delete this record? ") == true) {
-      axios
-        .delete("https://employee-management-fk-api.herokuapp.com/api/employee/" + e, {
-          headers: {
-            authorization: localStorage.getItem("token") || ""
-          }
-        })
-        .then(res => {
-          this.componentDidMount();
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      window.alert("You are not allowed to perform this operation");
+      // axios
+      //   .delete("https://employee-management-fk-api.herokuapp.com/api/employee/" + e, {
+      //     headers: {
+      //       authorization: localStorage.getItem("token") || ""
+      //     }
+      //   })
+      //   .then(res => {
+      //     this.componentDidMount();
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   });
     }
   };
   componentDidMount() {

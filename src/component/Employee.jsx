@@ -182,20 +182,20 @@ class Employee extends Component {
     newInfo.preventDefault();
     let body = {
       Email: newInfo.target[0].value,
-      Password: newInfo.target[1].value,
-      Account: newInfo.target[2].value,
-      RoleID: newInfo.target[3].value,
+      // Password: newInfo.target[1].value,
+      Account: newInfo.target[1].value,
+      RoleID: newInfo.target[2].value,
       Gender: this.state.editFormGender,
-      FirstName: newInfo.target[6].value,
-      MiddleName: newInfo.target[7].value,
-      LastName: newInfo.target[8].value,
-      DOB: newInfo.target[9].value,
-      ContactNo: newInfo.target[10].value,
-      EmployeeCode: newInfo.target[11].value,
-      DepartmentID: newInfo.target[12].value,
-      PositionID: newInfo.target[13].value,
-      DateOfJoining: newInfo.target[14].value,
-      TerminateDate: newInfo.target[15].value,
+      FirstName: newInfo.target[5].value,
+      MiddleName: newInfo.target[6].value,
+      LastName: newInfo.target[7].value,
+      DOB: newInfo.target[8].value,
+      ContactNo: newInfo.target[9].value,
+      EmployeeCode: newInfo.target[10].value,
+      DepartmentID: newInfo.target[11].value,
+      PositionID: newInfo.target[12].value,
+      DateOfJoining: newInfo.target[13].value,
+      TerminateDate: newInfo.target[14].value,
     };
     console.log("update", body);
     axios

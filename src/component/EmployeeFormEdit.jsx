@@ -11,7 +11,7 @@ class EmployeeFormEdit extends Component {
     GenderData: this.props.editData["Gender"],
 
     EmailData: this.props.editData["Email"],
-    PasswordData: "",
+    // PasswordData: "",
 
     FirstNameData: this.props.editData["FirstName"],
     MiddleNameData: this.props.editData["MiddleName"],
@@ -45,9 +45,9 @@ class EmployeeFormEdit extends Component {
   onEmployeeCodeDataChange(e) {
     this.setState({ EmployeeCodeData: e.target.value });
   }
-  onPasswordDataChange(e) {
-    this.setState({ PasswordData: e.target.value });
-  }
+  // onPasswordDataChange(e) {
+  //   this.setState({ PasswordData: e.target.value });
+  // }
 
   loadRoleInfo = () => {
     axios
@@ -143,7 +143,7 @@ class EmployeeFormEdit extends Component {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row}>
+            {/* <Form.Group as={Row}>
               <Form.Label column sm={2}>
                 Password
               </Form.Label>
@@ -156,7 +156,7 @@ class EmployeeFormEdit extends Component {
                   onChange={value => this.onPasswordDataChange(value)}
                 />
               </Col>
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group as={Row}>
               <Form.Label column sm={2}>
