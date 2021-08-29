@@ -186,7 +186,7 @@ class AdminEmployeeTable extends Component {
 
   loadEmployeeData = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/employee", {
+      .get(process.env.REACT_APP_API_URL + "/api/employee", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -229,7 +229,7 @@ class AdminEmployeeTable extends Component {
     if (window.confirm("Are you sure to delete this record? ") == true) {
       window.alert("You are not allowed to perform this operation");
       // axios
-      //   .delete("https://employee-management-fk-api.herokuapp.com/api/employee/" + e, {
+      //   .delete(process.env.REACT_APP_API_URL + "/api/employee/" + e, {
       //     headers: {
       //       authorization: localStorage.getItem("token") || ""
       //     }

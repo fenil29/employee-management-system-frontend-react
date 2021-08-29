@@ -103,7 +103,7 @@ class LeaveApplicationHRTable extends Component {
 
   loadLeaveApplicationHRData = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/leave-application-hr/", {
+      .get(process.env.REACT_APP_API_URL + "/api/leave-application-hr/", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -144,7 +144,7 @@ class LeaveApplicationHRTable extends Component {
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
         .delete(
-          "https://employee-management-fk-api.herokuapp.com/api/leave-application-hr/" + e1 + "/" + e2, {
+          process.env.REACT_APP_API_URL + "/api/leave-application-hr/" + e1 + "/" + e2, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }

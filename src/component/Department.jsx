@@ -73,7 +73,7 @@ class Department extends Component {
     //  let body= "CompanyID=" + event.target[0].value + "&Department=" + event.target[1].value;
     //  let body= "FenilKaneria";
     axios
-      .post("https://employee-management-fk-api.herokuapp.com/api/department", body, {
+      .post(process.env.REACT_APP_API_URL + "/api/department", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -123,7 +123,7 @@ class Department extends Component {
     console.log("update", body);
     axios
       .put(
-        "https://employee-management-fk-api.herokuapp.com/api/department/" + info["_id"],
+        process.env.REACT_APP_API_URL + "/api/department/" + info["_id"],
         body, {
         headers: {
           authorization: localStorage.getItem("token") || ""

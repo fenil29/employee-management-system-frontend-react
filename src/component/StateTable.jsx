@@ -79,7 +79,7 @@ class StateTable extends Component {
   // stateDataArray;
   loadStateData = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/state", {
+      .get(process.env.REACT_APP_API_URL + "/api/state", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -116,7 +116,7 @@ class StateTable extends Component {
     // let body= "ID=" + e;
     if (window.confirm("Are you sure to delete this record ? ") == true) {
       axios
-        .delete("https://employee-management-fk-api.herokuapp.com/api/state/" + e, {
+        .delete(process.env.REACT_APP_API_URL + "/api/state/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }
@@ -133,7 +133,7 @@ class StateTable extends Component {
     }
 
     // axios
-    // .delete("https://employee-management-fk-api.herokuapp.com/api/state", })
+    // .delete(process.env.REACT_APP_API_URL + "/api/state", })
     // .then(response => {
 
     // })
@@ -142,7 +142,7 @@ class StateTable extends Component {
     // });
     // axios.delete('https://employee-management-fk-api.herokuapp.com/api/state')
     //      .then(res => console.log(res.data));
-    // fetch("https://employee-management-fk-api.herokuapp.com/api/state", {
+    // fetch(process.env.REACT_APP_API_URL + "/api/state", {
     //   method: 'delete'
     // })
     // .then(response => response.json());

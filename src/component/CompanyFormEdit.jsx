@@ -63,7 +63,7 @@ class CompanyFormEdit extends Component {
 
   loadCountryInfo = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/country", {
+      .get(process.env.REACT_APP_API_URL + "/api/country", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -77,7 +77,7 @@ class CompanyFormEdit extends Component {
   };
   loadStateInfo = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/state", {
+      .get(process.env.REACT_APP_API_URL + "/api/state", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -91,7 +91,7 @@ class CompanyFormEdit extends Component {
   };
   loadCityInfo = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/city", {
+      .get(process.env.REACT_APP_API_URL + "/api/city", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

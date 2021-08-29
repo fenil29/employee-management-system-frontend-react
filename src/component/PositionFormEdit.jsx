@@ -16,7 +16,7 @@ class PositionForm extends Component {
   companyData = [];
   loadCompanyInfo = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/company", {
+      .get(process.env.REACT_APP_API_URL + "/api/company", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

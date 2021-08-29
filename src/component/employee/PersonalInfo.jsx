@@ -66,7 +66,7 @@ class PersonalInfo extends Component {
     };
     console.log("update", body);
     axios
-      .put("https://employee-management-fk-api.herokuapp.com/api/personal-info/" + info["_id"], body, {
+      .put(process.env.REACT_APP_API_URL + "/api/personal-info/" + info["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

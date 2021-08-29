@@ -72,7 +72,7 @@ class Country extends Component {
     //  let body= "CompanyID=" + event.target[0].value + "&Country=" + event.target[1].value;
     //  let body= "FenilKaneria";
     axios
-      .post("https://employee-management-fk-api.herokuapp.com/api/country", body, {
+      .post(process.env.REACT_APP_API_URL + "/api/country", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -120,7 +120,7 @@ class Country extends Component {
     };
     console.log("update", body);
     axios
-      .put("https://employee-management-fk-api.herokuapp.com/api/country/" + info["_id"], body, {
+      .put(process.env.REACT_APP_API_URL + "/api/country/" + info["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

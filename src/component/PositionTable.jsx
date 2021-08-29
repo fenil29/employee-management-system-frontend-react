@@ -77,7 +77,7 @@ class PositionTable extends Component {
 
   loadPositionData = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/position", {
+      .get(process.env.REACT_APP_API_URL + "/api/position", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -110,7 +110,7 @@ class PositionTable extends Component {
     console.log(e);
     if (window.confirm("Are you sure to delete this record ? ") == true) {
       axios
-        .delete("https://employee-management-fk-api.herokuapp.com/api/position/" + e, {
+        .delete(process.env.REACT_APP_API_URL + "/api/position/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }

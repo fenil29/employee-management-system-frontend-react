@@ -13,7 +13,7 @@ class EmployeeForm extends Component {
 
   loadRoleInfo = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/role", {
+      .get(process.env.REACT_APP_API_URL + "/api/role", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -27,7 +27,7 @@ class EmployeeForm extends Component {
   };
   loadPositionInfo = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/position", {
+      .get(process.env.REACT_APP_API_URL + "/api/position", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -41,7 +41,7 @@ class EmployeeForm extends Component {
   };
   loadDepartmentInfo = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/department", {
+      .get(process.env.REACT_APP_API_URL + "/api/department", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

@@ -194,7 +194,7 @@ class App extends Component {
     // {Email: id, Password: pass}
 
     axios
-      .post("https://employee-management-fk-api.herokuapp.com/api/login", bodyLogin)
+      .post(process.env.REACT_APP_API_URL + "/api/login", bodyLogin)
       .then(res => {
         // console.log(decodedData.Account);
         console.log(jwt.decode(res.data));

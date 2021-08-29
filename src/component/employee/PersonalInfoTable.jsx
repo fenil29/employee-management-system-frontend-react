@@ -131,7 +131,7 @@ class PersonalInfoTable extends Component {
   rowDataT = [];
   loadPersonalInfoData = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/personal-info/" + this.props.data["_id"], {
+      .get(process.env.REACT_APP_API_URL + "/api/personal-info/" + this.props.data["_id"], {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -175,7 +175,7 @@ class PersonalInfoTable extends Component {
     console.log(e);
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
-        .delete("https://employee-management-fk-api.herokuapp.com/api/personalInfo/" + e, {
+        .delete(process.env.REACT_APP_API_URL + "/api/personalInfo/" + e, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }

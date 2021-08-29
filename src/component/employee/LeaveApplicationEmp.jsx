@@ -61,7 +61,7 @@ class LeaveApplicationEmp extends Component {
       Status: event.target[4].value,
     };
     axios
-      .post("https://employee-management-fk-api.herokuapp.com/api/leave-application-emp/" + this.props.data["_id"], body, {
+      .post(process.env.REACT_APP_API_URL + "/api/leave-application-emp/" + this.props.data["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -110,7 +110,7 @@ class LeaveApplicationEmp extends Component {
     console.log("update", body);
     axios
       .put(
-        "https://employee-management-fk-api.herokuapp.com/api/leave-application-emp/" + info["_id"],
+        process.env.REACT_APP_API_URL + "/api/leave-application-emp/" + info["_id"],
         body, {
         headers: {
           authorization: localStorage.getItem("token") || ""

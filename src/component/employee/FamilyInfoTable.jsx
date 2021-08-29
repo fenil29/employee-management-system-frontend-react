@@ -95,7 +95,7 @@ class FamilyInfoTable extends Component {
 
   loadFamilyInfoData = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/family-info/" + this.props.data["_id"], {
+      .get(process.env.REACT_APP_API_URL + "/api/family-info/" + this.props.data["_id"], {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -130,7 +130,7 @@ class FamilyInfoTable extends Component {
     console.log(e1, e2);
     if (window.confirm("Are you sure to delete this record? ") == true) {
       axios
-        .delete("https://employee-management-fk-api.herokuapp.com/api/family-info/" + e1 + "/" + e2, {
+        .delete(process.env.REACT_APP_API_URL + "/api/family-info/" + e1 + "/" + e2, {
           headers: {
             authorization: localStorage.getItem("token") || ""
           }

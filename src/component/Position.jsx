@@ -73,7 +73,7 @@ class Position extends Component {
     //  let body= "CompanyID=" + event.target[0].value + "&Position=" + event.target[1].value;
     //  let body= "FenilKaneria";
     axios
-      .post("https://employee-management-fk-api.herokuapp.com/api/position", body, {
+      .post(process.env.REACT_APP_API_URL + "/api/position", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -121,7 +121,7 @@ class Position extends Component {
     console.log("update", body);
     axios
       .put(
-        "https://employee-management-fk-api.herokuapp.com/api/position/" + info["_id"],
+        process.env.REACT_APP_API_URL + "/api/position/" + info["_id"],
         body, {
         headers: {
           authorization: localStorage.getItem("token") || ""

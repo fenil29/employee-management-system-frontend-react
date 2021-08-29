@@ -48,7 +48,7 @@ class City extends Component {
       CityName: event.target[2].value
     };
     axios
-      .post("https://employee-management-fk-api.herokuapp.com/api/city", body, {
+      .post(process.env.REACT_APP_API_URL + "/api/city", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -94,7 +94,7 @@ class City extends Component {
     };
 
     axios
-      .put("https://employee-management-fk-api.herokuapp.com/api/city/" + info["_id"], body, {
+      .put(process.env.REACT_APP_API_URL + "/api/city/" + info["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

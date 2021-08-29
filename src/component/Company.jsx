@@ -56,7 +56,7 @@ class Company extends Component {
       CINNo: event.target[13].value,
     };
     axios
-      .post("https://employee-management-fk-api.herokuapp.com/api/company", body, {
+      .post(process.env.REACT_APP_API_URL + "/api/company", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -110,7 +110,7 @@ class Company extends Component {
     console.log("update", body);
     axios
       .put(
-        "https://employee-management-fk-api.herokuapp.com/api/company/" + info["_id"],
+        process.env.REACT_APP_API_URL + "/api/company/" + info["_id"],
         body, {
         headers: {
           authorization: localStorage.getItem("token") || ""

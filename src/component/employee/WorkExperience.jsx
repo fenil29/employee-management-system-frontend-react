@@ -57,7 +57,7 @@ class WorkExperience extends Component {
       ToDate: event.target[3].value,
     };
     axios
-      .post("https://employee-management-fk-api.herokuapp.com/api/work-experience/" + this.props.data["_id"], body, {
+      .post(process.env.REACT_APP_API_URL + "/api/work-experience/" + this.props.data["_id"], body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -105,7 +105,7 @@ class WorkExperience extends Component {
     console.log("update", body);
     axios
       .put(
-        "https://employee-management-fk-api.herokuapp.com/api/work-experience/" + info["_id"],
+        process.env.REACT_APP_API_URL + "/api/work-experience/" + info["_id"],
         body, {
         headers: {
           authorization: localStorage.getItem("token") || ""

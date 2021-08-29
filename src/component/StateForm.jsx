@@ -11,7 +11,7 @@ class StateForm extends Component {
   countryData = [];
   loadCountryInfo = () => {
     axios
-      .get("https://employee-management-fk-api.herokuapp.com/api/country", {
+      .get(process.env.REACT_APP_API_URL + "/api/country", {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }

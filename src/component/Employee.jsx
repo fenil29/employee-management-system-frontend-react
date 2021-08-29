@@ -142,7 +142,7 @@ class Employee extends Component {
       TerminateDate: event.target[15].value,
     };
     axios
-      .post("https://employee-management-fk-api.herokuapp.com/api/employee", body, {
+      .post(process.env.REACT_APP_API_URL + "/api/employee", body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
         }
@@ -200,7 +200,7 @@ class Employee extends Component {
     console.log("update", body);
     axios
       .put(
-        "https://employee-management-fk-api.herokuapp.com/api/employee/" + info["_id"],
+        process.env.REACT_APP_API_URL + "/api/employee/" + info["_id"],
         body, {
         headers: {
           authorization: localStorage.getItem("token") || ""
